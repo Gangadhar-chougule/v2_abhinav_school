@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer className="bg-foreground text-primary-foreground">
       <div className="section-container py-16">
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* School Info */}
           <div>
             <h3 className="font-heading text-2xl font-semibold mb-4">
@@ -62,18 +62,35 @@ export default function Footer() {
           <div>
             <h4 className="font-heading text-xl font-semibold mb-4">{t('contactUs')}</h4>
             <div className="flex flex-col gap-3">
-              <a href="tel:989074075" className="flex items-center gap-2 text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors">
+              <a href="tel:9922121619" className="flex items-center gap-2 text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors">
                 <Phone size={16} />
-                श्री. रविंद्र वसंतराव मोरे — 989074075
+                (+91) 9922121619
               </a>
-              <a href="tel:9373131363" className="flex items-center gap-2 text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors">
+              <a href="tel:9096731749" className="flex items-center gap-2 text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors">
                 <Phone size={16} />
-                श्री. संभाजी जगन्नाथ साळुंखे — 9373131363
+                (+91) 9096731749
               </a>
-              <a href="tel:9665410264" className="flex items-center gap-2 text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors">
+              <a href="tel:9730420843" className="flex items-center gap-2 text-primary-foreground/70 text-sm hover:text-primary-foreground transition-colors">
                 <Phone size={16} />
-                सौ. संगिता पांडुरंग गायकवाड — 9665410264
+                (+91) 9730420843
               </a>
+            </div>
+          </div>
+
+          {/* Map */}
+          <div>
+            <h4 className="font-heading text-xl font-semibold mb-4">{t('location')}</h4>
+            <div className="w-full h-40 rounded-md overflow-hidden border border-primary-foreground/20">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1v18!1m12!1m3!1d3803.578744444854!2d75.2445!3d17.5785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAbhinav%20Matimand%20Mulanchi%20Niwasi%20Shala!5e0!3m2!1sen!2sin!4v1699999999999!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="School Location"
+              />
             </div>
           </div>
         </div>

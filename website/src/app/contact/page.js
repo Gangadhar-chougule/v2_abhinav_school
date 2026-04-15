@@ -1,6 +1,6 @@
 'use client';
 
-import { Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Phone, MapPin, MessageCircle, Mail } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -9,6 +9,12 @@ const contacts = [
   { name: 'श्री. संभाजी जगन्नाथ साळुंखे', role: 'वि. शिक्षक (Special Teacher)', phone: '9373131363' },
   { name: 'सौ. संगिता पांडुरंग गायकवाड', role: 'प्र.मुख्या. (Head Teacher)', phone: '9665410264' },
   { name: 'सौ. आशाराणी उत्तमराव शिंदे', role: 'व्सतिगृह अधिक्षिका (Hostel Warden)', phone: '9850665078' },
+];
+
+const adpsContacts = [
+  { phone: '9922121619' },
+  { phone: '9096731749' },
+  { phone: '9730420843' },
 ];
 
 export default function Contact() {
@@ -23,17 +29,36 @@ export default function Contact() {
             {t('contactDesc')}
           </p>
 
-          {/* Address */}
+          {/* ADPS Contact Info */}
           <div className="border border-border rounded-md p-8 mb-12">
+            <h2 className="heading-section mb-6">{t('adpsContact')}</h2>
+            <div className="flex flex-col gap-4 mb-6">
+              {adpsContacts.map((c, i) => (
+                <a
+                  key={i}
+                  href={`tel:${c.phone}`}
+                  className="flex items-center gap-2 text-primary hover:underline"
+                >
+                  <Phone size={16} />
+                  (+91) {c.phone}
+                </a>
+              ))}
+              <a
+                href="mailto:adpsashta@gmail.com"
+                className="flex items-center gap-2 text-primary hover:underline"
+              >
+                <Mail size={16} />
+                adpsashta@gmail.com
+              </a>
+            </div>
             <div className="flex items-start gap-4">
               <MapPin className="text-primary mt-1 shrink-0" size={24} />
               <div>
-                <h2 className="heading-sub mb-2">{t('schoolAddress')}</h2>
+                <h3 className="heading-sub mb-2">{t('schoolAddress')}</h3>
                 <p className="body-text">
-                  अभिनव मतिमंद मुलांची निवासी शाळा,<br />
-                  पलूस (पलूस कॉलनी),<br />
-                  ता. पलूस, जि. सांगली,<br />
-                  महाराष्ट्र — 911001
+                  Annasaheb Dange Public School & JR. College,<br />
+                  Ashta, Tal-Walwa, Dist-Sangli,<br />
+                  Maharashtra
                 </p>
               </div>
             </div>

@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const navLinks = [
   { to: '/', labelKey: 'home' },
-  { to: '/about', labelKey: 'aboutUs' },
+  { to: '/about', labelKey: 'aboutUs', hasDropdown: true },
   { to: '/admissions', labelKey: 'admissions' },
   { to: '/events', labelKey: 'events' },
   { to: '/facilities', labelKey: 'facilities' },
@@ -18,8 +18,15 @@ const navLinks = [
   { to: '/contact', labelKey: 'contact' },
 ];
 
+const aboutSubLinks = [
+  { to: '/about', labelKey: 'overview' },
+  { to: '/vision-mission', labelKey: 'visionMission' },
+];
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const aboutDropdownRef = useRef(null);
   const pathname = usePathname();
   const { t } = useLanguage();
 
@@ -38,17 +45,51 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              href={link.to}
-              className={`text-sm font-medium transition-colors ${
-                pathname === link.to
-                  ? 'text-primary border-b-2 border-primary'
-                  : 'text-muted-foreground hover:text-primary'
-              }`}
-            >
-              {t(link.labelKey)}
-            </Link>
+            link.hasDropdown ? (
+              <div key={link.to} className="relative" ref={aboutDropdownRef}>
+                <button
+                  onClick={() => setAboutOpen(!aboutOpen)}
+                  className={`flex items-center gap-1 text-sm font-medium transition-colors ${
+                    pathname.startsWith(link.to) || (link.to === '/about' && pathname.includes('vision'))
+                      ? 'text-primary'
+                      : 'text-muted-foreground hover:text-primary'
+                  }`}
+                >
+                  {t(link.labelKey)}
+                  <ChevronDown size={14} className={`transition-transform ${aboutOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {aboutOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-background border border-border rounded-md shadow-lg py-1 z-50">
+                    {aboutSubLinks.map((subLink) => (
+                      <Link
+                        key={subLink.to}
+                        href={subLink.to}
+                        onClick={() => setAboutOpen(false)}
+                        className={`block px-4 py-2 text-sm hover:bg-muted/50 transition-colors ${
+                          pathname === subLink.to
+                            ? 'text-primary bg-primary/5'
+                            : 'text-muted-foreground'
+                        }`}
+                      >
+                        {t(subLink.labelKey)}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={link.to}
+                href={link.to}
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.to
+                    ? 'text-primary border-b-2 border-primary'
+                    : 'text-muted-foreground hover:text-primary'
+                }`}
+              >
+                {t(link.labelKey)}
+              </Link>
+            )
           ))}
 
           <div className="flex items-center gap-4 ml-4 pl-4 border-l border-border">
