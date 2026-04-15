@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius-radius: 0.5rem;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+:root {
+  /* Base Colors - Warm Cream & Deep Charcoal */
+  --background: 50 20% 97%;
+  --foreground: 0 0% 13%;
+
+  /* Component Surfaces */
+  --card: 50 20% 97%;
+  --card-foreground: 0 0% 13%;
+  --popover: 50 20% 97%;
+  --popover-foreground: 0 0% 13%;
+
+  /* Brand Colors - Sophisticated Sage Green */
+  --primary: 158 35% 38%;
+  --primary-foreground: 50 20% 97%;
+
+  --secondary: 50 15% 92%;
+  --secondary-foreground: 0 0% 13%;
+
+  /* Feedback & Accents */
+  --muted: 50 10% 90%;
+  --muted-foreground: 0 0% 40%;
+  --accent: 158 35% 38%;
+  --accent-foreground: 50 20% 97%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 50 20% 97%;
+
+  /* UI Details */
+  --border: 50 10% 85%;
+  --input: 50 10% 85%;
+  --ring: 158 35% 38%;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  antialiased: true;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Custom utility classes */
+.section-container {
+  @apply max-w-6xl mx-auto px-6 md:px-12;
+}
+
+.section-spacing {
+  @apply py-20 md:py-32;
+}
+
+.heading-display {
+  @apply text-5xl md:text-7xl font-bold leading-[1.1];
+  font-family: var(--font-heading);
+}
+
+.heading-section {
+  @apply text-3xl md:text-5xl font-semibold;
+  font-family: var(--font-heading);
+}
+
+.heading-sub {
+  @apply text-2xl md:text-3xl font-semibold;
+  font-family: var(--font-heading);
+}
+
+.body-large {
+  @apply text-lg md:text-xl leading-relaxed opacity-90;
+}
+
+.body-text {
+  @apply text-base leading-relaxed;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better link hover transitions */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Image hover effects */
+img {
+  transition: transform 0.3s ease;
+}
+
+/* Better button focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: hsl(var(--primary) / 0.2);
+  color: hsl(var(--foreground));
+}
+
+/* Improved scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
