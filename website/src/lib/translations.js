@@ -3,17 +3,19 @@ export const translations = {
     // Navigation
     home: 'Home',
     aboutUs: 'About Us',
+    admissions: 'Admissions',
+    events: 'Events',
     facilities: 'Facilities',
     ourStaff: 'Our Staff',
+    gallery: 'Gallery',
     contact: 'Contact',
-    feedback: 'Feedback',
-    donate: 'Donate',
-    
+    applyNow: 'Apply Now',
+
     // Organization
     orgName: 'Sant Dnyaneshwar Shikshan Sanstha',
     schoolName: 'Abhinav Matimand Mulanchi Niwasi Shala, Palus',
     location: 'Palus',
-    
+
     // Home Page
     homeSanskrit: '|| Duritancha timir javo | Vishva swadharma surye paho ||',
     homeTitle: 'Sant Dnyaneshwar Shikshan Sanstha',
@@ -39,7 +41,7 @@ export const translations = {
     educationalTripDesc: 'Educational excursions to historical sites and places of cultural importance.',
     getInTouch: 'Get in Touch',
     contactDesc: 'For admissions and inquiries, reach out to us. All services are provided free of cost.',
-    
+
     // About Page
     ourStory: 'Our Story',
     storyDesc1: 'Sant Dnyaneshwar Shikshan Sanstha was established by Hon. Annasaheb Dange in 1986.',
@@ -55,7 +57,26 @@ export const translations = {
     achievements: 'Achievements',
     achievementDesc1: 'Co-curricular activities and quality development programs are conducted. As a result, in 2016, the school received ISO certification, the first in Western Maharashtra.',
     achievementDesc2: 'All facilities are provided free of cost to residential students.',
-    
+
+    // Admissions Page
+    admissionsTitle: 'Admissions',
+    admissionsDesc: 'Admissions are open for specially-abled children. Fill out the form below to request information or apply.',
+    requestInfo: 'Request Information',
+    submitApplication: 'Submit Application',
+    applicationSuccess: 'Application submitted successfully!',
+    applicationReceived: 'We will contact you shortly.',
+
+    // Events Page
+    eventsTitle: 'Events',
+    eventsDesc: 'Stay updated with our school events, celebrations, and activities.',
+    upcomingEvents: 'Upcoming Events',
+    noEvents: 'No upcoming events at the moment. Check back soon!',
+    pastEvents: 'Past Events',
+
+    // Gallery Page
+    galleryTitle: 'Gallery',
+    galleryDesc: 'Browse through photos of our school activities, events, and daily life.',
+
     // Facilities Page
     facilitiesTitle: 'Facilities',
     facilitiesDesc: 'Our school provides comprehensive facilities free of cost, ensuring the best environment for our students.',
@@ -72,7 +93,7 @@ export const translations = {
     schoolCelebrations: 'School Celebrations & Festivals',
     vocationalSkills: 'Vocational Skills',
     parentCounseling: 'Parent Counseling',
-    
+
     // Staff Page
     staffTitle: 'Our Staff',
     staffDesc: 'Our dedicated team of professionals committed to the well-being and education of every student.',
@@ -80,7 +101,7 @@ export const translations = {
     staffName: 'Staff Name',
     position: 'Position',
     mobile: 'Mobile',
-    
+
     // Contact Page
     contactTitle: 'Contact Us',
     contactDesc: 'For admissions, information, or any inquiries — reach out to us via phone or WhatsApp.',
@@ -88,15 +109,12 @@ export const translations = {
     contactFor: 'For Contact',
     visitOrCall: 'Visit or Call Us',
     contactInfo: 'Our school provides all services and facilities free of cost. Feel free to contact any of the numbers above for admissions and inquiries.',
-    
-    // Feedback Page
-    feedbackTitle: 'Feedback',
-    feedbackDesc: 'Share your feedback with us. We value your input and strive to improve our services.',
+
+    // Form Fields
     fullName: 'Full Name',
     mobileNumber: 'Mobile Number',
     emailAddress: 'Email Address',
     relationToSchool: 'Relation to School',
-    feedbackType: 'Feedback Type',
     rating: 'Rating',
     message: 'Message',
     parent: 'Parent',
@@ -108,50 +126,30 @@ export const translations = {
     appreciation: 'Appreciation',
     requiredField: 'This field is required',
     submit: 'Submit',
-    feedbackSuccess: 'Feedback submitted successfully!',
-    
-    // Donation Page
-    donationTitle: 'Support Our Cause',
-    donationDesc: 'Your contribution helps us provide better education and care for our students. All donations are used transparently.',
-    studentCare: 'Student Care',
-    foodSupport: 'Food Support',
-    educationMaterial: 'Educational Materials',
-    hostelSupport: 'Hostel Support',
-    medicalSupport: 'Medical Support',
-    generalDonation: 'General Donation',
-    donorName: 'Your Name',
-    amount: 'Amount (₹)',
-    donationPurpose: 'Donation Purpose',
-    thankYou: 'Thank you for your generous donation!',
-    bankDetails: 'Bank Details',
-    accountName: 'Account Name',
-    accountNumber: 'Account Number',
-    ifscCode: 'IFSC Code',
-    bankName: 'Bank Name',
-    upiId: 'UPI ID',
-    scanQrToDonate: 'Scan QR Code to Donate',
-    receiptNote: 'A receipt will be provided for all donations. Please contact us for bank transfer details.',
+
     allRightsReserved: 'All Rights Reserved',
   },
   mr: {
     // Navigation
     home: 'मुख्यपृष्ठ',
     aboutUs: 'आमच्याबद्दल',
+    admissions: 'प्रवेश',
+    events: 'कार्यक्रम',
     facilities: 'सुविधा',
     ourStaff: 'सेवकवृंद',
+    gallery: 'गॅलरी',
     contact: 'संपर्क',
-    feedback: 'अभिप्राय',
-    donate: 'देणगी',
-    
+    applyNow: 'अर्ज करा',
+
     // Organization
     orgName: 'संत ज्ञानेश्वर शिक्षण संस्था',
     schoolName: 'अभिनव मतिमंद मुलांची निवासी शाळा, पलूस',
     location: 'पलूस',
-    
+
     // Home Page
     homeSanskrit: '|| दुरितांचे तिमिर जावो | विश्व स्वधर्म सूर्ये पाहो ||',
     homeTitle: 'संत ज्ञानेश्वर शिक्षण संस्था',
-    homeDesc: 'अभिनव मतिमंद मुलांची निवासी शाळा, पलूस — १९९८ पासून समर्पित शिक्षणाद्वारे विशेष सक्षम मुलांना सक्षम करणे.',
+    homeDesc: 'अभिनव मतिमंद मुलांची निवासी शाळा, पलूस — १९९ पासून समर्पित शिक्षणाद्वारे विशेष सक्षम मुलांना सक्षम करणे.',
     learnMore: 'अधिक जाणून घ्या',
     contactUs: 'संपर्क करा',
     aboutSection: 'आमच्या संस्थेबद्दल',
@@ -173,12 +171,12 @@ export const translations = {
     educationalTripDesc: 'ऐतिहासिक स्थळे आणि सांस्कृतिक महत्त्वाच्या ठिकाणांना शैक्षणिक भेटी.',
     getInTouch: 'संपर्क करा',
     contactDesc: 'प्रवेश आणि चौकशांसाठी आम्हाला संपर्क करा. सर्व सेवा विनामूल्य पुरविल्या जातात.',
-    
+
     // About Page
     ourStory: 'आमची कथा',
     storyDesc1: 'संत ज्ञानेश्वर शिक्षण संस्था ही संस्था मा. अण्णासाहेब डांगे यांना १९८६ साली सुरू केली.',
     storySanskrit: '|| दुरितांचे तिमिर जावो | विश्व स्वधर्म सूर्ये पाहो जो जे वांछिल तो ते लाहो प्राणीजात ||',
-    storyDesc2: 'हे ब्रीद वाक्य घेऊन, सन ५ जून १९९८ पासून संस्थेने पलूस येथे अभिनव मतिमंद मुलांची निवासी शाळा सुरू केली.',
+    storyDesc2: 'हे ब्रीद वाक्य घेऊन, सन ५ जून १९८ पासून संस्थेने पलूस येथे अभिनव मतिमंद मुलांची निवासी शाळा सुरू केली.',
     storyDesc3: 'दिव्यांग शाळेस भारतीय पुनर्वास संसद, नवी दिल्ली तर्फे (Rehabilitation Council of India) यांचे मार्गदर्शक तत्वाने मा. आयुक्त म रा पुणे यांचे कार्यालयाकडून २२ जुलै १९९९ रोजी क्र. ०५८९ ने अनुज्ञापती प्राप्त झाली आहे.',
     underGuidance: 'मा. अण्णासाहेब डांगे यांच्या मार्गदर्शनाखाली',
     guidance1: 'निवासी प्रवेशित विद्यार्थ्यांना विशेष शिक्षण',
@@ -189,7 +187,26 @@ export const translations = {
     achievements: 'यश',
     achievementDesc1: 'तसेच सहशालेय उपक्रम व गुणवत्ता विकास वाढ उपक्रम चालविले जात आहेत. त्याचेच फलित म्हणून सन २०१६ रोजी पश्चिम महाराष्ट्रात प्रथम ISO मानांकन होण्याचा मान शाळेस मिळाला.',
     achievementDesc2: 'आपल्या विशेष शाळेतील प्रवेशित विद्यार्थ्यांना सर्व सोयी-सुविधा विनामूल्य आदर्शवत पुरविल्या जातात.',
-    
+
+    // Admissions Page
+    admissionsTitle: 'प्रवेश',
+    admissionsDesc: 'विशेष सक्षम मुलांसाठी प्रवेश सुरू आहेत. माहिती विनंती करण्यासाठी किंवा अर्ज करण्यासाठी खालील फॉर्म भरा.',
+    requestInfo: 'माहिती विनंती',
+    submitApplication: 'अर्ज सबमिट करा',
+    applicationSuccess: 'अर्ज यशस्वीरित्या सबमिट केला!',
+    applicationReceived: 'आम्ही लवकरच तुमच्याशी संपर्क साधू.',
+
+    // Events Page
+    eventsTitle: 'कार्यक्रम',
+    eventsDesc: 'आमच्या शाळेतील कार्यक्रम, उत्सव आणि उपक्रमांसह अपडेट राहा.',
+    upcomingEvents: 'आगामी कार्यक्रम',
+    noEvents: 'सध्या कोणतेही आगामी कार्यक्रम नाहीत. लवकरच परत तपासा!',
+    pastEvents: 'मागील कार्यक्रम',
+
+    // Gallery Page
+    galleryTitle: 'गॅलरी',
+    galleryDesc: 'आमच्या शाळेतील उपक्रम, कार्यक्रम आणि दैनंदिन जीवनाचे फोटो पहा.',
+
     // Facilities Page
     facilitiesTitle: 'सुविधा',
     facilitiesDesc: 'आमची शाळा विद्यार्थ्यांसाठी उत्तम वातावरण सुनिश्चित करणारी सर्वसमावेशक सुविधा विनामूल्य प्रदान करते.',
@@ -206,7 +223,7 @@ export const translations = {
     schoolCelebrations: 'शालेय उपक्रम जयंती-उत्सव',
     vocationalSkills: 'व्यवसाय पूर्व कौशल्ये',
     parentCounseling: 'पालक मार्गदर्शन',
-    
+
     // Staff Page
     staffTitle: 'सेवकवृंद',
     staffDesc: 'प्रत्येक विद्यार्थ्याच्या शिक्षण आणि कल्याणासाठी वाहून घेतलेली आमची समर्पित व्यावसायिकांची टीम.',
@@ -214,7 +231,7 @@ export const translations = {
     staffName: 'कर्मचारी नाव',
     position: 'पद नाम',
     mobile: 'मोबाईल',
-    
+
     // Contact Page
     contactTitle: 'संपर्क करा',
     contactDesc: 'प्रवेश, माहिती किंवा कोणत्याही चौकशांसाठी — फोन किंवा व्हॉट्सअ‍ॅपद्वारे आम्हाला संपर्क करा.',
@@ -222,15 +239,12 @@ export const translations = {
     contactFor: 'संपर्काकरीता',
     visitOrCall: 'भेट द्या किंवा कॉल करा',
     contactInfo: 'आमची शाळा सर्व सेवा आणि सुविधा विनामूल्य प्रदान करते. प्रवेश आणि चौकशांसाठी वरील कोणत्याही क्रमांकावर संपर्क साधा.',
-    
-    // Feedback Page
-    feedbackTitle: 'अभिप्राय',
-    feedbackDesc: 'आमच्यासह तुमचा अभिप्राय सामायिक करा. आम्ही तुमचे मत मौल्यवान मानतो आणि आमच्या सेवा सुधारण्याचा प्रयत्न करतो.',
+
+    // Form Fields
     fullName: 'पूर्ण नाव',
     mobileNumber: 'मोबाईल क्रमांक',
     emailAddress: 'ईमेल पत्ता',
     relationToSchool: 'शाळेशी संबंध',
-    feedbackType: 'अभिप्राय प्रकार',
     rating: 'रेटिंग',
     message: 'संदेश',
     parent: 'पालक',
@@ -242,46 +256,26 @@ export const translations = {
     appreciation: 'कौतुक',
     requiredField: 'हे फील्ड आवश्यक आहे',
     submit: 'सबमिट करा',
-    feedbackSuccess: 'अभिप्राय यशस्वीरित्या सबमिट केला!',
-    
-    // Donation Page
-    donationTitle: 'आमच्या कार्याला पाठिंबा द्या',
-    donationDesc: 'तुमचे योगदान आम्हाला आमच्या विद्यार्थ्यांसाठी चांगले शिक्षण आणि काळजी प्रदान करण्यात मदत करते. सर्व देणग्या पारदर्शकपणे वापरल्या जातात.',
-    studentCare: 'विद्यार्थी काळजी',
-    foodSupport: 'अन्न समर्थन',
-    educationMaterial: 'शैक्षणिक साहित्य',
-    hostelSupport: 'वसतिगृह समर्थन',
-    medicalSupport: 'वैद्यकीय समर्थन',
-    generalDonation: 'सामान्य देणगी',
-    donorName: 'तुमचे नाव',
-    amount: 'रक्कम (₹)',
-    donationPurpose: 'देणगीचा उद्देश',
-    thankYou: 'तुमच्या उदार देणगीसाठी धन्यवाद!',
-    bankDetails: 'बँक तपशील',
-    accountName: 'खाते नाव',
-    accountNumber: 'खाते क्रमांक',
-    ifscCode: 'IFSC कोड',
-    bankName: 'बँकेचे नाव',
-    upiId: 'UPI आयडी',
-    scanQrToDonate: 'देणगी देण्यासाठी QR कोड स्कॅन करा',
-    receiptNote: 'सर्व देणग्यांसाठी पावती प्रदान केली जाईल. बँक हस्तांतरण तपशीलांसाठी आम्हाला संपर्क करा.',
+
     allRightsReserved: 'सर्व हक्क राखीव',
   },
   hi: {
     // Navigation
     home: 'होम',
     aboutUs: 'हमारे बारे में',
+    admissions: 'प्रवेश',
+    events: 'कार्यक्रम',
     facilities: 'सुविधाएं',
     ourStaff: 'हमारा स्टाफ',
+    gallery: 'गैलरी',
     contact: 'संपर्क',
-    feedback: 'प्रतिक्रिया',
-    donate: 'दान',
-    
+    applyNow: 'आवेदन करें',
+
     // Organization
     orgName: 'संत ज्ञानेश्वर शिक्षण संस्थान',
     schoolName: 'अभिनव मतिमंद बच्चों की आवासीय विद्यालय, पलूस',
     location: 'पलूस',
-    
+
     // Home Page
     homeSanskrit: '|| दुरितान्च तिमिर जावो | विश्व स्वधर्म सूर्ये पाहो ||',
     homeTitle: 'संत ज्ञानेश्वर शिक्षण संस्थान',
@@ -307,7 +301,7 @@ export const translations = {
     educationalTripDesc: 'ऐतिहासिक स्थलों और सांस्कृतिक महत्व के स्थानों पर शैक्षिक भ्रमण।',
     getInTouch: 'संपर्क करें',
     contactDesc: 'प्रवेश और पूछताछ के लिए हमसे संपर्क करें। सभी सेवाएं निःशुल्क प्रदान की जाती हैं।',
-    
+
     // About Page
     ourStory: 'हमारी कहानी',
     storyDesc1: 'संत ज्ञानेश्वर शिक्षण संस्थान की स्थापना माननीय अन्नासाहेब डोंगरे ने 1986 में की थी।',
@@ -323,7 +317,26 @@ export const translations = {
     achievements: 'उपलब्धियां',
     achievementDesc1: 'सह-शैक्षिक गतिविधियां और गुणवत्ता विकास कार्यक्रम आयोजित किए जाते हैं। इसके परिणामस्वरूप, 2016 में विद्यालय को पश्चिम महाराष्ट्र में पहला ISO प्रमाणपत्र मिला।',
     achievementDesc2: 'आवासीय छात्रों को सभी सुविधाएं निःशुल्क प्रदान की जाती हैं।',
-    
+
+    // Admissions Page
+    admissionsTitle: 'प्रवेश',
+    admissionsDesc: 'विशेष सक्षम बच्चों के लिए प्रवेश खुले हैं। जानकारी का अनुरोध करने या आवेदन करने के लिए नीचे दिया गया फॉर्म भरें।',
+    requestInfo: 'जानकारी का अनुरोध',
+    submitApplication: 'आवेदन जमा करें',
+    applicationSuccess: 'आवेदन सफलतापूर्वक जमा किया गया!',
+    applicationReceived: 'हम जल्द ही आपसे संपर्क करेंगे।',
+
+    // Events Page
+    eventsTitle: 'कार्यक्रम',
+    eventsDesc: 'हमारे विद्यालय के कार्यक्रमों, उत्सवों और गतिविधियों के साथ अपडेट रहें।',
+    upcomingEvents: 'आगामी कार्यक्रम',
+    noEvents: 'इस समय कोई आगामी कार्यक्रम नहीं हैं। जल्द ही वापस आएं!',
+    pastEvents: 'पिछले कार्यक्रम',
+
+    // Gallery Page
+    galleryTitle: 'गैलरी',
+    galleryDesc: 'हमारे विद्यालय की गतिविधियों, कार्यक्रमों और दैनिक जीवन की तस्वीरें देखें।',
+
     // Facilities Page
     facilitiesTitle: 'सुविधाएं',
     facilitiesDesc: 'हमारा विद्यालय छात्रों के लिए सर्वोत्तम वातावरण सुनिश्चित करने वाली व्यापक सुविधाएं निःशुल्क प्रदान करता है।',
@@ -340,7 +353,7 @@ export const translations = {
     schoolCelebrations: 'विद्यालय उत्सव और समारोह',
     vocationalSkills: 'व्यावसायिक कौशल',
     parentCounseling: 'अभिभावक परामर्श',
-    
+
     // Staff Page
     staffTitle: 'हमारा स्टाफ',
     staffDesc: 'प्रत्येक छात्र की शिक्षा और कल्याण के लिए समर्पित हमारी व्यावसायिक टीम।',
@@ -348,7 +361,7 @@ export const translations = {
     staffName: 'कर्मचारी का नाम',
     position: 'पद',
     mobile: 'मोबाइल',
-    
+
     // Contact Page
     contactTitle: 'संपर्क करें',
     contactDesc: 'प्रवेश, जानकारी या किसी भी पूछताछ के लिए — फोन या व्हाट्सएप के माध्यम से हमसे संपर्क करें।',
@@ -356,15 +369,12 @@ export const translations = {
     contactFor: 'संपर्क के लिए',
     visitOrCall: 'आएं या कॉल करें',
     contactInfo: 'हमारा विद्यालय सभी सेवाएं और सुविधाएं निःशुल्क प्रदान करता है। प्रवेश और पूछताछ के लिए उपरोक्त किसी भी नंबर पर संपर्क करें।',
-    
-    // Feedback Page
-    feedbackTitle: 'प्रतिक्रिया',
-    feedbackDesc: 'हमारे साथ अपनी प्रतिक्रिया साझा करें। हम आपके इनपुट को महत्व देते हैं और अपनी सेवाओं में सुधार का प्रयास करते हैं।',
+
+    // Form Fields
     fullName: 'पूरा नाम',
     mobileNumber: 'मोबाइल नंबर',
     emailAddress: 'ईमेल पता',
     relationToSchool: 'विद्यालय से संबंध',
-    feedbackType: 'प्रतिक्रिया प्रकार',
     rating: 'रेटिंग',
     message: 'संदेश',
     parent: 'अभिभावक',
@@ -376,29 +386,7 @@ export const translations = {
     appreciation: 'सरहाना',
     requiredField: 'यह फ़ील्ड आवश्यक है',
     submit: 'जमा करें',
-    feedbackSuccess: 'प्रतिक्रिया सफलतापूर्वक सबमिट की गई!',
-    
-    // Donation Page
-    donationTitle: 'हमारे कारण का समर्थन करें',
-    donationDesc: 'आपका योगदान हमें अपने छात्रों के लिए बेहतर शिक्षा और देखभाल प्रदान करने में मदद करता है। सभी दान पारदर्शी रूप से उपयोग किए जाते हैं।',
-    studentCare: 'छात्र देखभाल',
-    foodSupport: 'भोजन समर्थन',
-    educationMaterial: 'शैक्षिक सामग्री',
-    hostelSupport: 'हॉस्टल समर्थन',
-    medicalSupport: 'चिकित्सा समर्थन',
-    generalDonation: 'सामान्य दान',
-    donorName: 'आपका नाम',
-    amount: 'राशि (₹)',
-    donationPurpose: 'दान का उद्देश्य',
-    thankYou: 'आपके उदार दान के लिए धन्यवाद!',
-    bankDetails: 'बैंक विवरण',
-    accountName: 'खाता नाम',
-    accountNumber: 'खाता संख्या',
-    ifscCode: 'IFSC कोड',
-    bankName: 'बैंक का नाम',
-    upiId: 'UPI ID',
-    scanQrToDonate: 'दान देने के लिए QR कोड स्कैन करें',
-    receiptNote: 'सभी दान के लिए रसीद प्रदान की जाएगी। बैंक हस्तांतरण विवरण के लिए हमसे संपर्क करें।',
+
     allRightsReserved: 'सर्वाधिकार सुरक्षित',
   },
 };

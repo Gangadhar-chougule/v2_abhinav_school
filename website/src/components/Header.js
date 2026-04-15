@@ -3,15 +3,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Heart, MessageSquare } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const navLinks = [
   { to: '/', labelKey: 'home' },
   { to: '/about', labelKey: 'aboutUs' },
+  { to: '/admissions', labelKey: 'admissions' },
+  { to: '/events', labelKey: 'events' },
   { to: '/facilities', labelKey: 'facilities' },
   { to: '/staff', labelKey: 'ourStaff' },
+  { to: '/gallery', labelKey: 'gallery' },
   { to: '/contact', labelKey: 'contact' },
 ];
 
@@ -32,7 +35,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
@@ -49,15 +52,13 @@ export default function Header() {
           ))}
 
           <div className="flex items-center gap-4 ml-4 pl-4 border-l border-border">
-            <Link href="/feedback" className="text-sm font-medium flex items-center gap-1.5 text-muted-foreground hover:text-primary transition-colors">
-              <MessageSquare size={16} />
-              {t('feedback')}
-            </Link>
-            <Link href="/donation" className="text-sm font-medium flex items-center gap-1.5 bg-primary/10 text-primary hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors">
-              <Heart size={16} className="fill-primary/20" />
-              {t('donate')}
-            </Link>
             <LanguageSwitcher />
+            <Link
+              href="/admissions"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              {t('applyNow')}
+            </Link>
           </div>
         </nav>
 
@@ -92,18 +93,11 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/feedback"
+            href="/admissions"
             onClick={() => setIsOpen(false)}
-            className="block px-6 py-3 text-sm font-medium border-b border-border text-muted-foreground hover:text-primary flex items-center gap-2"
+            className="block px-6 py-3 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 text-center mx-4 mt-3 rounded-md"
           >
-            <MessageSquare size={16} /> {t('feedback')}
-          </Link>
-          <Link
-            href="/donation"
-            onClick={() => setIsOpen(false)}
-            className="block px-6 py-3 text-sm font-medium text-primary bg-primary/5 hover:bg-primary/10 flex items-center gap-2"
-          >
-            <Heart size={16} /> {t('donate')}
+            {t('applyNow')}
           </Link>
         </nav>
       )}

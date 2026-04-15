@@ -7,11 +7,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const navLinks = [
   { to: '/', labelKey: 'home' },
   { to: '/about', labelKey: 'aboutUs' },
+  { to: '/admissions', labelKey: 'admissions' },
+  { to: '/events', labelKey: 'events' },
   { to: '/facilities', labelKey: 'facilities' },
   { to: '/staff', labelKey: 'ourStaff' },
+  { to: '/gallery', labelKey: 'gallery' },
   { to: '/contact', labelKey: 'contact' },
-  { to: '/feedback', labelKey: 'feedback' },
-  { to: '/donation', labelKey: 'donate' },
 ];
 
 export default function Footer() {
