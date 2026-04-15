@@ -13,10 +13,29 @@ export default function Admissions() {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    console.log('Admission Application Submitted:', data);
-    toast.success(t('applicationSuccess'));
-    reset();
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/admissions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit application');
+      }
+
+      toast.success(t('applicationSuccess'));
+      reset();
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error(error.message || t('submissionError') || 'Failed to submit application');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
