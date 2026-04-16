@@ -2,26 +2,29 @@
 
 import Image from 'next/image';
 import Layout from '@/components/Layout';
+import PageHero from '@/components/PageHero';
+import ScrollReveal from '@/components/ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getImageUrl } from '@/lib/imageUrls';
 
 const staffMembers = [
-  { name: 'सौ. संगिता पांडुरंग गायकवाड', role: 'प्र.मुख्या. (Head Teacher)', phone: '9665410264' },
-  { name: 'श्री. संभाजी जगन्नाथ साळुंखे', role: 'वि. शिक्षक (Special Teacher)', phone: '9373131363' },
-  { name: 'श्री मारूती श्रीपती वाघमोडे', role: 'वि. शिक्षक (Special Teacher)', phone: '9665653285' },
-  { name: 'कु. अश्विनी संतोष कुलकर्णी', role: 'वि. शिक्षिका (Special Teacher)', phone: '9960840546' },
-  { name: 'श्री. सुहास वसंतराव कदम', role: 'कला शिक्षक (Art Teacher)', phone: '9527941925' },
-  { name: 'सौ आशाराणी उत्तमराव शिंदे', role: 'व्सतिगृह अधिक्षिका (Hostel Warden)', phone: '9850665078' },
-  { name: 'सौ. अरूणा निवृत्ती शिणगारे', role: 'परिचारीका (Caretaker)', phone: '7397913963' },
-  { name: 'श्री. रविंद्र वसंतराव मोरे', role: 'मानसशास्त्रज्ञ (Psychologist)', phone: '989074075' },
-  { name: 'श्री. हिम्मत सर्जेराव डांगे', role: 'काळजीवाहक (Caretaker)', phone: '9970528898' },
-  { name: 'श्री. तन्मय तुकाराम कोथळकर', role: 'काळजीवाहक (Caretaker)', phone: '9075011395' },
-  { name: 'श्री. जीवन महादेव पाटील', role: 'राखणदार (Watchman)', phone: '9309893582' },
-  { name: 'श्री. लक्ष्मण तायाप्पा माने', role: 'शिपाई (Peon)', phone: '9404004150' },
-  { name: 'सौ. सुमन रघुनाथ खांबे', role: 'स्वयंपाकीण (Cook)', phone: '7517086888' },
-  { name: 'सौ. लक्ष्मी भाउ साठे', role: 'स्वयंपाकीण (Cook)', phone: '9665410264' },
-  { name: 'श्री. श्रीधर सतिश गोरड', role: 'सफाईगार (Sweeper)', phone: '9850079107' },
-  { name: 'सौ. विदया पांडुरंग रावण', role: 'सफाईगार (Sweeper)', phone: '8380876229' },
-  { name: 'श्री. विकास साहेबराव डुबल', role: 'पहारेकरी (Guard)', phone: '8766543303' },
+  { name: 'à¤¸à¥Œ. à¤¸à¤‚à¤—à¤¿à¤¤à¤¾ à¤ªà¤¾à¤‚à¤¡à¥à¤°à¤‚à¤— à¤—à¤¾à¤¯à¤•à¤µà¤¾à¤¡', role: 'à¤ªà¥à¤°.à¤®à¥à¤–à¥à¤¯à¤¾. (Head Teacher)', phone: '9665410264' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤¸à¤‚à¤­à¤¾à¤œà¥€ à¤œà¤—à¤¨à¥à¤¨à¤¾à¤¥ à¤¸à¤¾à¤³à¥à¤‚à¤–à¥‡', role: 'à¤µà¤¿. à¤¶à¤¿à¤•à¥à¤·à¤• (Special Teacher)', phone: '9373131363' },
+  { name: 'à¤¶à¥à¤°à¥€ à¤®à¤¾à¤°à¥‚à¤¤à¥€ à¤¶à¥à¤°à¥€à¤ªà¤¤à¥€ à¤µà¤¾à¤˜à¤®à¥‹à¤¡à¥‡', role: 'à¤µà¤¿. à¤¶à¤¿à¤•à¥à¤·à¤• (Special Teacher)', phone: '9665653285' },
+  { name: 'à¤•à¥. à¤…à¤¶à¥à¤µà¤¿à¤¨à¥€ à¤¸à¤‚à¤¤à¥‹à¤· à¤•à¥à¤²à¤•à¤°à¥à¤£à¥€', role: 'à¤µà¤¿. à¤¶à¤¿à¤•à¥à¤·à¤¿à¤•à¤¾ (Special Teacher)', phone: '9960840546' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤¸à¥à¤¹à¤¾à¤¸ à¤µà¤¸à¤‚à¤¤à¤°à¤¾à¤µ à¤•à¤¦à¤®', role: 'à¤•à¤²à¤¾ à¤¶à¤¿à¤•à¥à¤·à¤• (Art Teacher)', phone: '9527941925' },
+  { name: 'à¤¸à¥Œ à¤†à¤¶à¤¾à¤°à¤¾à¤£à¥€ à¤‰à¤¤à¥à¤¤à¤®à¤°à¤¾à¤µ à¤¶à¤¿à¤‚à¤¦à¥‡', role: 'à¤µà¥à¤¸à¤¤à¤¿à¤—à¥ƒà¤¹ à¤…à¤§à¤¿à¤•à¥à¤·à¤¿à¤•à¤¾ (Hostel Warden)', phone: '9850665078' },
+  { name: 'à¤¸à¥Œ. à¤…à¤°à¥‚à¤£à¤¾ à¤¨à¤¿à¤µà¥ƒà¤¤à¥à¤¤à¥€ à¤¶à¤¿à¤£à¤—à¤¾à¤°à¥‡', role: 'à¤ªà¤°à¤¿à¤šà¤¾à¤°à¥€à¤•à¤¾ (Caretaker)', phone: '7397913963' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤°à¤µà¤¿à¤‚à¤¦à¥à¤° à¤µà¤¸à¤‚à¤¤à¤°à¤¾à¤µ à¤®à¥‹à¤°à¥‡', role: 'à¤®à¤¾à¤¨à¤¸à¤¶à¤¾à¤¸à¥à¤¤à¥à¤°à¤œà¥à¤ž (Psychologist)', phone: '989074075' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤¹à¤¿à¤®à¥à¤®à¤¤ à¤¸à¤°à¥à¤œà¥‡à¤°à¤¾à¤µ à¤¡à¤¾à¤‚à¤—à¥‡', role: 'à¤•à¤¾à¤³à¤œà¥€à¤µà¤¾à¤¹à¤• (Caretaker)', phone: '9970528898' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤¤à¤¨à¥à¤®à¤¯ à¤¤à¥à¤•à¤¾à¤°à¤¾à¤® à¤•à¥‹à¤¥à¤³à¤•à¤°', role: 'à¤•à¤¾à¤³à¤œà¥€à¤µà¤¾à¤¹à¤• (Caretaker)', phone: '9075011395' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤œà¥€à¤µà¤¨ à¤®à¤¹à¤¾à¤¦à¥‡à¤µ à¤ªà¤¾à¤Ÿà¥€à¤²', role: 'à¤°à¤¾à¤–à¤£à¤¦à¤¾à¤° (Watchman)', phone: '9309893582' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤²à¤•à¥à¤·à¥à¤®à¤£ à¤¤à¤¾à¤¯à¤¾à¤ªà¥à¤ªà¤¾ à¤®à¤¾à¤¨à¥‡', role: 'à¤¶à¤¿à¤ªà¤¾à¤ˆ (Peon)', phone: '9404004150' },
+  { name: 'à¤¸à¥Œ. à¤¸à¥à¤®à¤¨ à¤°à¤˜à¥à¤¨à¤¾à¤¥ à¤–à¤¾à¤‚à¤¬à¥‡', role: 'à¤¸à¥à¤µà¤¯à¤‚à¤ªà¤¾à¤•à¥€à¤£ (Cook)', phone: '7517086888' },
+  { name: 'à¤¸à¥Œ. à¤²à¤•à¥à¤·à¥à¤®à¥€ à¤­à¤¾à¤‰ à¤¸à¤¾à¤ à¥‡', role: 'à¤¸à¥à¤µà¤¯à¤‚à¤ªà¤¾à¤•à¥€à¤£ (Cook)', phone: '9665410264' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤¶à¥à¤°à¥€à¤§à¤° à¤¸à¤¤à¤¿à¤¶ à¤—à¥‹à¤°à¤¡', role: 'à¤¸à¤«à¤¾à¤ˆà¤—à¤¾à¤° (Sweeper)', phone: '9850079107' },
+  { name: 'à¤¸à¥Œ. à¤µà¤¿à¤¦à¤¯à¤¾ à¤ªà¤¾à¤‚à¤¡à¥à¤°à¤‚à¤— à¤°à¤¾à¤µà¤£', role: 'à¤¸à¤«à¤¾à¤ˆà¤—à¤¾à¤° (Sweeper)', phone: '8380876229' },
+  { name: 'à¤¶à¥à¤°à¥€. à¤µà¤¿à¤•à¤¾à¤¸ à¤¸à¤¾à¤¹à¥‡à¤¬à¤°à¤¾à¤µ à¤¡à¥à¤¬à¤²', role: 'à¤ªà¤¹à¤¾à¤°à¥‡à¤•à¤°à¥€ (Guard)', phone: '8766543303' },
 ];
 
 export default function Staff() {
@@ -29,53 +32,51 @@ export default function Staff() {
 
   return (
     <Layout>
+      <PageHero title={t('staffTitle')} description={t('staffDesc')} />
+
       <section className="section-spacing">
         <div className="section-container">
-          <h1 className="heading-display text-center mb-4">{t('staffTitle')}</h1>
-          <p className="body-large text-center max-w-2xl mx-auto mb-12">
-            {t('staffDesc')}
-          </p>
-
-          {/* Group Photo */}
-          <div className="mb-16">
-            <div className="relative w-full h-96">
+          <ScrollReveal className="surface-card-strong overflow-hidden" delay={100}>
+            <div className="relative h-72 md:h-[30rem]">
               <Image
-                src="/images/staff-group.png"
+                src={getImageUrl('staff-group.png') || '/images/staff-group.png'}
                 alt="Staff Group Photo"
                 fill
-                className="object-cover rounded-md"
+                className="object-cover"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/55 via-transparent to-transparent" />
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* Staff Table */}
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b-2 border-primary">
-                  <th className="text-left py-3 px-4 font-heading text-lg font-semibold text-foreground">{t('srNo')}</th>
-                  <th className="text-left py-3 px-4 font-heading text-lg font-semibold text-foreground">{t('staffName')}</th>
-                  <th className="text-left py-3 px-4 font-heading text-lg font-semibold text-foreground">{t('position')}</th>
-                  <th className="text-left py-3 px-4 font-heading text-lg font-semibold text-foreground">{t('mobile')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {staffMembers.map((member, i) => (
-                  <tr key={i} className="border-b border-border hover:bg-secondary/50 transition-colors">
-                    <td className="py-3 px-4 text-sm text-muted-foreground">{i + 1}</td>
-                    <td className="py-3 px-4 text-sm font-medium text-foreground">{member.name}</td>
-                    <td className="py-3 px-4 text-sm text-muted-foreground">{member.role}</td>
-                    <td className="py-3 px-4">
-                      <a href={`tel:${member.phone}`} className="text-sm text-primary hover:underline">
-                        {member.phone}
-                      </a>
-                    </td>
+          <ScrollReveal className="table-shell mt-8" delay={150}>
+            <div className="overflow-x-auto">
+              <table className="min-w-full border-collapse">
+                <thead className="bg-gradient-to-r from-primary to-secondary text-white">
+                  <tr>
+                    <th className="px-4 py-4 text-left text-sm font-semibold uppercase tracking-[0.2em]">{t('srNo')}</th>
+                    <th className="px-4 py-4 text-left text-sm font-semibold uppercase tracking-[0.2em]">{t('staffName')}</th>
+                    <th className="px-4 py-4 text-left text-sm font-semibold uppercase tracking-[0.2em]">{t('position')}</th>
+                    <th className="px-4 py-4 text-left text-sm font-semibold uppercase tracking-[0.2em]">{t('mobile')}</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {staffMembers.map((member, index) => (
+                    <tr key={`${member.phone}-${index}`} className="border-b border-border/70 bg-white/70 hover:bg-secondary/6">
+                      <td className="px-4 py-4 text-sm font-medium text-muted-foreground">{index + 1}</td>
+                      <td className="px-4 py-4 text-sm font-semibold text-foreground">{member.name}</td>
+                      <td className="px-4 py-4 text-sm text-foreground/70">{member.role}</td>
+                      <td className="px-4 py-4 text-sm">
+                        <a href={`tel:${member.phone}`} className="font-medium text-primary hover:text-secondary hover:underline">
+                          {member.phone}
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </Layout>

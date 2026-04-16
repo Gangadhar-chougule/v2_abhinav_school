@@ -1,64 +1,73 @@
 'use client';
 
-import Image from 'next/image';
+import { CheckCircle2, Compass, Target } from 'lucide-react';
 import Layout from '@/components/Layout';
+import PageHero from '@/components/PageHero';
+import ScrollReveal from '@/components/ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getImageUrl } from '@/lib/imageUrls';
 
 export default function VisionMission() {
   const { t } = useLanguage();
 
   return (
     <Layout>
-      <section className="relative h-[40vh] overflow-hidden">
-        <Image src="/images/school-building.jpg" alt="School" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-foreground/60" />
-        <div className="relative z-10 h-full flex items-end pb-12">
-          <div className="section-container">
-            <h1 className="heading-display text-primary-foreground">{t('visionMission')}</h1>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title={t('visionMission')}
+        image={getImageUrl('school-building.jpg') || '/images/school-building.jpg'}
+        imageAlt="School"
+      />
 
       <section className="section-spacing">
-        <div className="section-container max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="heading-section text-4xl md:text-5xl mb-4">&ldquo;{t('visionQuote')}&rdquo;</h2>
-            <p className="text-xl text-muted-foreground">&ldquo;{t('visionQuoteEn')}&rdquo;</p>
+        <div className="section-container max-w-6xl">
+          <ScrollReveal className="section-panel text-center" delay={90}>
+            <span className="section-kicker">{t('visionMission')}</span>
+            <h2 className="heading-section mb-4">&ldquo;{t('visionQuote')}&rdquo;</h2>
+            <p className="body-large">&ldquo;{t('visionQuoteEn')}&rdquo;</p>
+          </ScrollReveal>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <ScrollReveal delay={120}>
+              <div className="grid-card h-full">
+                <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-[1.25rem] bg-primary/12 text-primary">
+                  <Target size={24} />
+                </span>
+                <h3 className="heading-sub mb-4">{t('ourGoal')}</h3>
+                <p className="body-text">{t('goalDesc')}</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={180}>
+              <div className="grid-card h-full">
+                <span className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-[1.25rem] bg-secondary/12 text-secondary">
+                  <Compass size={24} />
+                </span>
+                <h3 className="heading-sub mb-4">{t('ourPath')}</h3>
+                <p className="body-text">{t('pathDesc')}</p>
+              </div>
+            </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="border border-border rounded-md p-8">
-              <h3 className="heading-sub mb-4">{t('ourGoal')}</h3>
-              <p className="body-text">{t('goalDesc')}</p>
-            </div>
-
-            <div className="border border-border rounded-md p-8">
-              <h3 className="heading-sub mb-4">{t('ourPath')}</h3>
-              <p className="body-text">{t('pathDesc')}</p>
-            </div>
-          </div>
-
-          <div className="mt-12">
-            <h3 className="heading-section mb-6">{t('qualityPolicy')}</h3>
-            <ul className="space-y-4">
+          <ScrollReveal className="surface-card-strong mt-8 p-8 md:p-10" delay={180}>
+            <h3 className="heading-sub mb-6">{t('qualityPolicy')}</h3>
+            <ul className="grid gap-4">
               {[
                 'qualityPolicy1',
                 'qualityPolicy2',
                 'qualityPolicy3',
                 'qualityPolicy4',
                 'qualityPolicy5',
-              ].map((key, i) => (
-                <li key={i} className="body-text flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
-                  {t(key)}
+              ].map((key) => (
+                <li key={key} className="flex items-start gap-3 rounded-[1.25rem] border border-secondary/10 bg-secondary/5 px-4 py-4">
+                  <CheckCircle2 size={18} className="mt-1 shrink-0 text-secondary" />
+                  <span className="body-text text-foreground/80">{t(key)}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </ScrollReveal>
 
-          <div className="mt-12">
-            <h3 className="heading-section mb-6">{t('ourFeatures')}</h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <ScrollReveal className="surface-card-strong mt-8 p-8 md:p-10" delay={220}>
+            <h3 className="heading-sub mb-6">{t('ourFeatures')}</h3>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 'feature1',
                 'feature2',
@@ -73,13 +82,13 @@ export default function VisionMission() {
                 'feature11',
                 'feature12',
                 'feature13',
-              ].map((key, i) => (
-                <div key={i} className="border border-border rounded-md p-4">
-                  <p className="body-text">{t(key)}</p>
+              ].map((key, index) => (
+                <div key={key} className={`rounded-[1.35rem] border px-4 py-4 ${index % 3 === 0 ? 'border-primary/12 bg-primary/5' : index % 3 === 1 ? 'border-secondary/12 bg-secondary/5' : 'border-accent/25 bg-accent/10'}`}>
+                  <p className="body-text text-foreground/80">{t(key)}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </Layout>

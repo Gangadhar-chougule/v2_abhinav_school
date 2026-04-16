@@ -9,6 +9,7 @@ export async function uploadToCloudinary(file) {
   const formData = new FormData();
   formData.append('file', file);
   formData.append('upload_preset', 'school_website');
+  formData.append('folder', 'school');
 
   try {
     const response = await fetch(

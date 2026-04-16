@@ -1,66 +1,62 @@
 'use client';
 
-import Image from 'next/image';
+import { CheckCircle2 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import PageHero from '@/components/PageHero';
+import ScrollReveal from '@/components/ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getImageUrl } from '@/lib/imageUrls';
 
 export default function About() {
   const { t } = useLanguage();
 
   return (
     <Layout>
-      {/* Hero */}
-      <section className="relative h-[40vh] overflow-hidden">
-        <Image src="/images/school-building.jpg" alt="School" fill className="object-cover" priority />
-        <div className="absolute inset-0 bg-foreground/60" />
-        <div className="relative z-10 h-full flex items-end pb-12">
-          <div className="section-container">
-            <h1 className="heading-display text-primary-foreground">{t('aboutUs')}</h1>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title={t('aboutUs')}
+        image={getImageUrl('school-building.jpg') || '/images/school-building.jpg'}
+        imageAlt="School"
+      />
 
       <section className="section-spacing">
-        <div className="section-container max-w-3xl">
-          <h2 className="heading-section mb-6">{t('ourStory')}</h2>
-          <div className="space-y-6">
-            <p className="body-large">
-              {t('storyDesc1')}
-            </p>
-            <p className="body-text">
-              {t('storySanskrit')}
-            </p>
-            <p className="body-text">
-              {t('storyDesc2')}
-            </p>
-            <p className="body-text">
-              {t('storyDesc3')}
-            </p>
+        <div className="section-container max-w-6xl">
+          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+            <ScrollReveal className="section-panel" delay={90}>
+              <span className="section-kicker">{t('ourStory')}</span>
+              <h2 className="heading-section mb-6">{t('ourStory')}</h2>
+              <div className="space-y-5">
+                <p className="body-large">{t('storyDesc1')}</p>
+                <p className="body-text">{t('storySanskrit')}</p>
+                <p className="body-text">{t('storyDesc2')}</p>
+                <p className="body-text">{t('storyDesc3')}</p>
+              </div>
+            </ScrollReveal>
 
-            <h3 className="heading-sub mt-12 mb-4">{t('underGuidance')}</h3>
-            <ul className="space-y-3">
+            <ScrollReveal className="surface-card-strong p-8 md:p-10" delay={140}>
+              <span className="section-kicker">{t('achievements')}</span>
+              <h3 className="heading-sub mb-5">{t('achievements')}</h3>
+              <p className="body-text">{t('achievementDesc1')}</p>
+              <p className="body-text mt-4">{t('achievementDesc2')}</p>
+            </ScrollReveal>
+          </div>
+
+          <ScrollReveal className="surface-card-strong mt-8 p-8 md:p-10" delay={160}>
+            <h3 className="heading-sub mb-6">{t('underGuidance')}</h3>
+            <ul className="grid gap-4 md:grid-cols-2">
               {[
                 t('guidance1'),
                 t('guidance2'),
                 t('guidance3'),
                 t('guidance4'),
                 t('guidance5'),
-              ].map((item, i) => (
-                <li key={i} className="body-text flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
-                  {item}
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 rounded-[1.25rem] border border-primary/10 bg-primary/5 px-4 py-4">
+                  <CheckCircle2 size={18} className="mt-1 shrink-0 text-primary" />
+                  <span className="body-text text-foreground/80">{item}</span>
                 </li>
               ))}
             </ul>
-
-            <h3 className="heading-sub mt-12 mb-4">{t('achievements')}</h3>
-            <p className="body-text">
-              {t('achievementDesc1')}
-            </p>
-            <p className="body-text">
-              {t('achievementDesc2')}
-            </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </Layout>
