@@ -164,9 +164,23 @@ export async function POST(request) {
   }
 }
 
-export async function GET() {
+export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const action = searchParams.get("action");
+
     await dbConnect();
+
+    if (action === "stats") {
+      const total = await AdmissionEnquiry.countDocuments();
+      const pending = await AdmissionEnquiry.countDocuments({ status: "pending" });
+      const reviewed = await AdmissionEnquiry.countDocuments({ status: "reviewed" });
+      const responded = await AdmissionEnquiry.countDocuments({ status: "responded" });
+      return NextResponse.json({
+        success: true,
+        data: { total, pending, reviewed, responded },
+      }, { status: 200 });
+    }
 
     const enquiries = await AdmissionEnquiry.find({})
       .sort({ createdAt: -1 })
@@ -185,5 +199,55 @@ export async function GET() {
       { error: "Failed to fetch enquiries" },
       { status: 500 }
     );
+  }
+}
+
+export async function PUT(request) {
+  try {
+    const body = await request.json();
+    const { id, status, notes } = body;
+
+    if (!id) {
+      return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    }
+
+    await dbConnect();
+    const enquiry = await AdmissionEnquiry.findByIdAndUpdate(
+      id,
+      { status, notes },
+      { new: true }
+    );
+
+    if (!enquiry) {
+      return NextResponse.json({ error: "Enquiry not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, data: enquiry }, { status: 200 });
+  } catch (error) {
+    console.error("Update enquiry error:", error);
+    return NextResponse.json({ error: "Failed to update enquiry" }, { status: 500 });
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    }
+
+    await dbConnect();
+    const enquiry = await AdmissionEnquiry.findByIdAndDelete(id);
+
+    if (!enquiry) {
+      return NextResponse.json({ error: "Enquiry not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, message: "Enquiry deleted" }, { status: 200 });
+  } catch (error) {
+    console.error("Delete enquiry error:", error);
+    return NextResponse.json({ error: "Failed to delete enquiry" }, { status: 500 });
   }
 }
