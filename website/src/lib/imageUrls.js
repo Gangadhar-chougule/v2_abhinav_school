@@ -27,7 +27,11 @@ export const imageUrls = {
 };
 
 export function getImageUrl(filename) {
-  return imageUrls[filename] || null;
+  const cloudinaryUrl = imageUrls[filename];
+  if (cloudinaryUrl) {
+    return cloudinaryUrl;
+  }
+  return `/images/${filename}`;
 }
 
 export function getImageUrlOrDefault(filename, fallback = '/images/placeholder.jpg') {

@@ -28,15 +28,15 @@ export default function Home() {
       <PageHero
         title={t('homeTitle')}
         description={t('homeDesc')}
-        image={getImageUrl('school-building.jpg') || '/images/school-building.jpg'}
+        image={getImageUrl('school-building.jpg')}
         imageAlt="School campus"
         size="large"
       />
 
       {/* Stats / Features Strip */}
-      <section className="relative z-20 -mt-12 sm:-mt-16">
+      <section className="relative z-20 -mt-10 sm:-mt-14">
         <div className="section-container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
               { label: t('specialEducation'), icon: GraduationCap },
               { label: t('comprehensiveTherapy'), icon: HeartHandshake },
@@ -46,12 +46,12 @@ export default function Home() {
               <ScrollReveal 
                 key={index} 
                 delay={index * 100} 
-                className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center text-center gap-3 hover:-translate-y-1 transition-transform"
+                className="bg-white p-5 md:p-6 rounded-xl shadow-md flex flex-col items-center text-center gap-3 hover:-translate-y-1 transition-transform"
               >
-                <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                  <item.icon size={24} />
+                <div className="h-11 w-11 rounded-lg bg-primary text-white flex items-center justify-center shadow-md">
+                  <item.icon size={22} />
                 </div>
-                <span className="text-sm font-bold text-slate-900 leading-tight">{item.label}</span>
+                <span className="text-xs md:text-sm font-semibold text-slate-900 leading-tight">{item.label}</span>
               </ScrollReveal>
             ))}
           </div>
@@ -59,26 +59,27 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="section-spacing overflow-hidden">
+      <section className="section-spacing">
         <div className="section-container">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <ScrollReveal className="relative" delay={100}>
-              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src={getImageUrl('school-corridor.jpg') || '/images/school-corridor.jpg'}
+                  src={getImageUrl('school-corridor.jpg')}
                   alt="School environment"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hidden md:block">
-                <div className="flex items-center gap-4">
-                  <div className="h-12 w-12 rounded-full bg-accent text-accent-foreground flex items-center justify-center">
-                    <Award size={24} />
+              <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white p-5 md:p-6 rounded-xl shadow-lg border border-slate-100 hidden md:block">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-lg bg-accent text-accent-foreground flex items-center justify-center">
+                    <Award size={20} />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-slate-900">ISO</p>
-                    <p className="text-xs text-slate-500 uppercase tracking-wider">Certified School</p>
+                    <p className="text-lg font-bold text-slate-900">ISO</p>
+                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">Certified School</p>
                   </div>
                 </div>
               </div>
@@ -105,12 +106,12 @@ export default function Home() {
       {/* Services Grid */}
       <section className="section-spacing bg-slate-50">
         <div className="section-container">
-          <ScrollReveal className="text-center mb-16" delay={100}>
+          <ScrollReveal className="text-center mb-12" delay={100}>
             <span className="section-kicker">{t('ourServices')}</span>
             <h2 className="heading-section text-slate-900">{t('ourServices')}</h2>
           </ScrollReveal>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {[
               { title: t('specialEducation'), titleEn: 'Special Education', desc: t('specialEducationDesc') },
               { title: t('comprehensiveTherapy'), titleEn: 'Comprehensive Therapy', desc: t('comprehensiveTherapyDesc') },
@@ -120,12 +121,12 @@ export default function Home() {
               const Icon = serviceIcons[index];
               return (
                 <ScrollReveal key={index} delay={150 + index * 100}>
-                  <div className="surface-card p-10 h-full group">
-                    <div className="h-14 w-14 rounded-2xl bg-primary text-white flex items-center justify-center mb-8 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                      <Icon size={28} />
+                  <div className="surface-card p-8 h-full group hover:shadow-md transition-shadow">
+                    <div className="h-12 w-12 rounded-xl bg-primary text-white flex items-center justify-center mb-6 shadow-md group-hover:scale-105 transition-transform">
+                      <Icon size={24} />
                     </div>
-                    <h3 className="heading-sub mb-3 text-slate-900">{item.title}</h3>
-                    <p className="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">{item.titleEn}</p>
+                    <h3 className="heading-sub mb-2 text-slate-900">{item.title}</h3>
+                    <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">{item.titleEn}</p>
                     <p className="body-text">{item.desc}</p>
                   </div>
                 </ScrollReveal>
@@ -138,49 +139,49 @@ export default function Home() {
       {/* Activities Highlight */}
       <section className="section-spacing">
         <div className="section-container">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-10 md:mb-12">
             <ScrollReveal delay={100}>
               <span className="section-kicker">{t('schoolActivities')}</span>
               <h2 className="heading-section text-slate-900">{t('schoolActivities')}</h2>
             </ScrollReveal>
             <ScrollReveal delay={200}>
-              <Link href="/events" className="text-primary font-bold inline-flex items-center gap-2 hover:gap-3 transition-all">
-                {t('viewAllEvents')} <ArrowRight size={18} />
+              <Link href="/events" className="text-primary font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all text-sm">
+                {t('viewAllEvents')} <ArrowRight size={16} />
               </Link>
             </ScrollReveal>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {[
               {
                 title: t('treePlanting'),
                 desc: t('treePlantingDesc'),
-                image: getImageUrl('tree-planting.jpg') || '/images/tree-planting.jpg',
+                image: getImageUrl('tree-planting.jpg'),
                 icon: Calendar,
               },
               {
                 title: t('educationalTrip'),
                 desc: t('educationalTripDesc'),
-                image: getImageUrl('educational-trip.jpg') || '/images/educational-trip.jpg',
+                image: getImageUrl('educational-trip.jpg'),
                 icon: Users,
               },
             ].map((item, index) => (
               <ScrollReveal key={index} delay={150 + index * 100}>
                 <article className="surface-card overflow-hidden h-full group">
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative h-64 md:h-72 overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-3 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-                      <item.icon size={16} />
+                  <div className="p-6 md:p-7">
+                    <div className="flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+                      <item.icon size={14} />
                       {t('activity')}
                     </div>
-                    <h3 className="heading-sub mb-4 text-slate-900 group-hover:text-primary transition-colors">{item.title}</h3>
+                    <h3 className="heading-sub mb-3 text-slate-900 group-hover:text-primary transition-colors">{item.title}</h3>
                     <p className="body-text line-clamp-3">{item.desc}</p>
                   </div>
                 </article>
