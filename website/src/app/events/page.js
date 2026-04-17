@@ -1,45 +1,32 @@
 'use client';
 
+import { Calendar } from 'lucide-react';
 import Layout from '@/components/Layout';
+import PageHero from '@/components/PageHero';
+import ScrollReveal from '@/components/ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Calendar, Clock, MapPin } from 'lucide-react';
 
 export default function Events() {
   const { t } = useLanguage();
 
   return (
     <Layout>
-      <main className="flex-grow pt-24 pb-16">
-        {/* Hero Section */}
-        <section className="relative h-[30vh] md:h-[40vh] overflow-hidden mb-12">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/60" />
-          <div className="relative z-10 h-full flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-3xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">
-                {t('eventsTitle')}
-              </h1>
-              <p className="text-primary-foreground/90 text-lg md:text-xl max-w-2xl mx-auto">
-                {t('eventsDesc')}
-              </p>
-            </div>
-          </div>
-        </section>
+      <PageHero title={t('eventsTitle')} description={t('eventsDesc')} />
 
-        <div className="section-container">
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-8 text-center">
-            {t('upcomingEvents')}
-          </h2>
-
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-card rounded-xl p-8 shadow-sm border border-border text-center">
-              <Calendar size={48} className="mx-auto text-primary/50 mb-4" />
-              <p className="text-muted-foreground text-lg">
-                {t('noEvents')}
-              </p>
+      <section className="section-spacing">
+        <div className="section-container max-w-4xl">
+          <ScrollReveal className="section-panel text-center" delay={100}>
+            <span className="section-kicker">{t('upcomingEvents')}</span>
+            <h2 className="heading-section mb-6">{t('upcomingEvents')}</h2>
+            <div className="mx-auto flex max-w-xl flex-col items-center rounded-[1.75rem] border border-secondary/10 bg-white/80 px-6 py-10 shadow-[0_18px_40px_rgba(33,150,243,0.08)]">
+              <span className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-secondary/10 text-secondary">
+                <Calendar size={30} />
+              </span>
+              <p className="body-large">{t('noEvents')}</p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
-      </main>
+      </section>
     </Layout>
   );
 }

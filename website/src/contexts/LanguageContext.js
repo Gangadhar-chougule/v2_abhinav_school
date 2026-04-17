@@ -11,6 +11,8 @@ export const LanguageProvider = ({ children }) => {
   useEffect(() => {
     const saved = localStorage.getItem('language');
     if (saved && ['en', 'mr', 'hi'].includes(saved)) {
+      // Restore client preference after hydration without changing translation keys or behavior.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLanguage(saved);
     }
   }, []);

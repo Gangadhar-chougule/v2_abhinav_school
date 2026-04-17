@@ -1,14 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import Layout from '@/components/Layout';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
+import Layout from '@/components/Layout';
+import PageHero from '@/components/PageHero';
+import ScrollReveal from '@/components/ScrollReveal';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Admissions() {
   const { t } = useLanguage();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (data) => {
@@ -40,111 +47,68 @@ export default function Admissions() {
 
   return (
     <Layout>
-      <main className="flex-grow pt-24 pb-16">
-        {/* Hero Section */}
-        <section className="relative h-[30vh] md:h-[40vh] overflow-hidden mb-12">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/60" />
-          <div className="relative z-10 h-full flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-3xl md:text-5xl font-heading font-bold text-primary-foreground mb-4">
-                {t('admissionsTitle')}
-              </h1>
-              <p className="text-primary-foreground/90 text-lg md:text-xl max-w-2xl mx-auto">
-                {t('admissionsDesc')}
-              </p>
-            </div>
-          </div>
-        </section>
+      <PageHero title={t('admissionsTitle')} description={t('admissionsDesc')} />
 
+      <section className="section-spacing">
         <div className="section-container max-w-3xl">
-          <div className="bg-card rounded-2xl p-8 shadow-sm border border-border">
-            <h2 className="text-2xl font-heading font-bold text-foreground mb-8 text-center">
-              {t('requestInfo')}
-            </h2>
+          <ScrollReveal className="surface-card-strong p-8 md:p-10" delay={100}>
+            <div className="text-center">
+              <span className="section-kicker">{t('requestInfo')}</span>
+              <h2 className="heading-sub mb-8">{t('requestInfo')}</h2>
+            </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">{t('fullName')} *</label>
-                <input
-                  {...register('fullName', { required: true })}
-                  className="w-full h-11 px-4 rounded-lg border border-input bg-background/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder={t('fullName')}
-                />
-                {errors.fullName && <span className="text-destructive text-xs">{t('requiredField')}</span>}
+                <label className="text-sm font-semibold text-foreground">{t('fullName')} *</label>
+                <input {...register('fullName', { required: true })} className="form-input" placeholder={t('fullName')} />
+                {errors.fullName ? <span className="text-xs text-destructive">{t('requiredField')}</span> : null}
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">{t('emailAddress')} *</label>
-                <input
-                  type="email"
-                  {...register('emailAddress', { required: true })}
-                  className="w-full h-11 px-4 rounded-lg border border-input bg-background/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder={t('emailAddress')}
-                />
-                {errors.emailAddress && <span className="text-destructive text-xs">{t('requiredField')}</span>}
+                <label className="text-sm font-semibold text-foreground">{t('emailAddress')} *</label>
+                <input type="email" {...register('emailAddress', { required: true })} className="form-input" placeholder={t('emailAddress')} />
+                {errors.emailAddress ? <span className="text-xs text-destructive">{t('requiredField')}</span> : null}
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">{t('mobileNumber')} *</label>
-                <input
-                  {...register('mobileNumber', { required: true })}
-                  className="w-full h-11 px-4 rounded-lg border border-input bg-background/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-                  placeholder={t('mobileNumber')}
-                />
-                {errors.mobileNumber && <span className="text-destructive text-xs">{t('requiredField')}</span>}
+                <label className="text-sm font-semibold text-foreground">{t('mobileNumber')} *</label>
+                <input {...register('mobileNumber', { required: true })} className="form-input" placeholder={t('mobileNumber')} />
+                {errors.mobileNumber ? <span className="text-xs text-destructive">{t('requiredField')}</span> : null}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">{t('relationToSchool')} *</label>
-                  <select
-                    {...register('relation', { required: true })}
-                    className="w-full h-11 px-4 rounded-lg border border-input bg-background/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
-                  >
+                  <label className="text-sm font-semibold text-foreground">{t('relationToSchool')} *</label>
+                  <select {...register('relation', { required: true })} className="form-select">
                     <option value="">-- Select --</option>
                     <option value="parent">{t('parent')}</option>
                     <option value="visitor">{t('visitor')}</option>
                     <option value="other">{t('other')}</option>
                   </select>
-                  {errors.relation && <span className="text-destructive text-xs">{t('requiredField')}</span>}
+                  {errors.relation ? <span className="text-xs text-destructive">{t('requiredField')}</span> : null}
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-foreground">{t('subject')}</label>
-                  <input
-                    {...register('subject')}
-                    className="w-full h-11 px-4 rounded-lg border border-input bg-background/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-                    placeholder={t('subject')}
-                  />
+                  <label className="text-sm font-semibold text-foreground">{t('subject')}</label>
+                  <input {...register('subject')} className="form-input" placeholder={t('subject')} />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-foreground">{t('message')} *</label>
-                <textarea
-                  {...register('message', { required: true })}
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-background/50 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all resize-none"
-                  placeholder={t('message')}
-                />
-                {errors.message && <span className="text-destructive text-xs">{t('requiredField')}</span>}
+                <label className="text-sm font-semibold text-foreground">{t('message')} *</label>
+                <textarea {...register('message', { required: true })} rows={5} className="form-textarea resize-none" placeholder={t('message')} />
+                {errors.message ? <span className="text-xs text-destructive">{t('requiredField')}</span> : null}
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full h-12 inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground font-medium transition-all hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 disabled:opacity-50"
-              >
+              <button type="submit" disabled={isSubmitting} className="button-primary w-full rounded-2xl py-3.5 disabled:cursor-not-allowed disabled:opacity-60">
                 {isSubmitting ? 'Submitting...' : t('submitApplication')}
               </button>
             </form>
-          </div>
+          </ScrollReveal>
 
-          <p className="text-center text-muted-foreground text-sm mt-6">
-            {t('applicationReceived')}
-          </p>
+          <p className="mt-6 text-center text-sm text-muted-foreground">{t('applicationReceived')}</p>
         </div>
-      </main>
+      </section>
     </Layout>
   );
 }

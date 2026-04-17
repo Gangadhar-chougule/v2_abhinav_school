@@ -1,19 +1,8 @@
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+import PageLoader from "@/components/PageLoader";
 
 export const metadata = {
   title: "Sant Dnyaneshwar Shikshan Sanstha | अभिनव मतिमंद मुलांची निवासी शाळा",
@@ -26,9 +15,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${inter.variable} font-body min-h-screen flex flex-col`}>
+      <body className="font-body min-h-screen flex flex-col">
         <LanguageProvider>
           <TooltipProvider>
+            <PageLoader />
             {children}
             <Toaster />
           </TooltipProvider>
