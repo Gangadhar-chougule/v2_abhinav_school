@@ -16,15 +16,15 @@ export default function LanguageSwitcher({ compact = false }) {
   return (
     <div className="flex items-center gap-2">
       {!compact ? (
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary/10 text-secondary">
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600">
           <Globe className="h-4 w-4" />
         </span>
       ) : null}
       <Select value={language} onValueChange={(value) => setLanguage(value)}>
-        <SelectTrigger className={`${compact ? 'w-[108px]' : 'w-[126px]'} h-10 rounded-full border-white/70 bg-white/80 text-sm shadow-[0_10px_24px_rgba(15,23,42,0.06)] backdrop-blur-md`}>
+        <SelectTrigger className={`${compact ? 'w-[100px]' : 'w-[120px]'} h-9 rounded-lg border-slate-200 bg-white text-xs shadow-sm hover:bg-slate-50 transition-colors`}>
           <SelectValue placeholder="Language" />
         </SelectTrigger>
-        <SelectContent className="rounded-2xl border-white/70 bg-white/96 backdrop-blur-xl">
+        <SelectContent className="rounded-xl border-slate-200 bg-white shadow-xl">
           <SelectItem value="en">English</SelectItem>
           <SelectItem value="mr">à¤®à¤°à¤¾à¤ à¥€</SelectItem>
           <SelectItem value="hi">à¤¹à¤¿à¤‚à¤¦à¥€</SelectItem>
