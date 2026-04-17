@@ -26,8 +26,8 @@ export default function LanguageSwitcher({ compact = false }) {
         </SelectTrigger>
         <SelectContent className="rounded-xl border-slate-200 bg-white shadow-xl">
           <SelectItem value="en">English</SelectItem>
-          <SelectItem value="mr">à¤®à¤°à¤¾à¤ à¥€</SelectItem>
-          <SelectItem value="hi">à¤¹à¤¿à¤‚à¤¦à¥€</SelectItem>
+          <SelectItem value="mr">मराठी</SelectItem>
+          <SelectItem value="hi">हिन्दी</SelectItem>
         </SelectContent>
       </Select>
     </div>
