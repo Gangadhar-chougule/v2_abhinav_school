@@ -24,9 +24,9 @@ export default function PageHero({
           className="object-cover object-center"
           sizes="100vw"
         />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/85 via-slate-900/60 to-slate-900/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+        {/* Softer overlay for lighter UI while keeping text readable */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
       </div>
       
       {/* Content */}
