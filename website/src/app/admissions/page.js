@@ -7,6 +7,7 @@ import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { getImageUrl } from '@/lib/imageUrls';
 
 export default function Admissions() {
   const { t } = useLanguage();
@@ -51,7 +52,7 @@ export default function Admissions() {
       <PageHero
         title={t('admissionsTitle')}
         description={t('admissionsDesc')}
-        image={getImageUrl ? getImageUrl('unnamed (11).webp') || '/images/unnamed (11).webp' : '/images/unnamed (11).webp'}
+        image={getImageUrl('unnamed (11).webp') || '/images/unnamed (11).webp'}
       />
 
       <section className="section-spacing">
