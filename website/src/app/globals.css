@@ -353,6 +353,25 @@ h1, h2, h3, h4, h5, h6 {
   .bg-hero-green .section-container { max-width: 1100px; }
 }
 
+/* Simple hero slideshow crossfade for multiple background images
+   Each image uses the .hero-slide class and the parent sets the animation
+   duration via inline style delay when rendering. Keep animations subtle. */
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+}
+.hero-slide {
+  opacity: 0;
+  animation: heroCrossfade 18s linear infinite;
+}
+@keyframes heroCrossfade {
+  0% { opacity: 0; }
+  4% { opacity: 1; }
+  28% { opacity: 1; }
+  32% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

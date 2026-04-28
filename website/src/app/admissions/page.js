@@ -47,7 +47,12 @@ export default function Admissions() {
 
   return (
     <Layout>
-      <PageHero title={t('admissionsTitle')} description={t('admissionsDesc')} />
+      {/* Use a single campus image for admissions hero to match desired design */}
+      <PageHero
+        title={t('admissionsTitle')}
+        description={t('admissionsDesc')}
+        image={getImageUrl ? getImageUrl('unnamed (11).webp') || '/images/unnamed (11).webp' : '/images/unnamed (11).webp'}
+      />
 
       <section className="section-spacing">
         <div className="section-container max-w-3xl">

@@ -35,16 +35,34 @@ export default function PageHero({
 
   return (
     <section className={`relative flex items-center overflow-hidden ${heightClass}`}>
-      {/* Background Image */}
+      {/* Background Image or slideshow (supports string or array of image urls) */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src={image}
-          alt={imageAlt || ''}
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+        {Array.isArray(image) ? (
+          <div className="hero-slideshow absolute inset-0">
+            {image.map((imgSrc, idx) => (
+              <Image
+                key={idx}
+                src={imgSrc}
+                alt={imageAlt || `hero-${idx}`}
+                fill
+                priority={idx === 0}
+                className={`object-cover object-center hero-slide`}
+                sizes="100vw"
+                style={{ animationDelay: `${idx * 6}s` }}
+              />
+            ))}
+          </div>
+        ) : (
+          <Image
+            src={image}
+            alt={imageAlt || ''}
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        )}
+
         {/* Softer overlay for lighter UI while keeping text readable */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />

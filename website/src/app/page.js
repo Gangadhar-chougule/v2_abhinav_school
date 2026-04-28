@@ -29,7 +29,8 @@ export default function Home() {
         title={t('homeTitle')}
         description={t('homeDesc')}
         // Resolve image via helper so it can come from Cloudinary mapping or the bundled public images
-        image={getImageUrl('school-building.jpg') || '/images/school-building.jpg'}
+        // Pass an array so the hero shows a subtle slideshow between two campus images
+        image={[getImageUrl('school-building.jpg') || '/images/school-building.jpg', getImageUrl('unnamed (11).webp') || '/images/unnamed (11).webp']}
         imageAlt="School campus"
         size="large"
       />
