@@ -11,6 +11,7 @@ export default function PageHero({
   image,
   imageAlt,
   size = 'default',
+  className = '',
 }) {
   const { t } = useLanguage();
   const heightClass = size === 'large' ? 'min-h-[70vh] md:min-h-[85vh]' : 'min-h-[40vh] md:min-h-[50vh]';
@@ -34,7 +35,7 @@ export default function PageHero({
   }
 
   return (
-    <section className={`relative flex items-center overflow-hidden ${heightClass}`}>
+    <section className={`relative flex items-center overflow-hidden ${heightClass} ${className}`.trim()}>
       {/* Background Image or slideshow (supports string or array of image urls) */}
       <div className="absolute inset-0 z-0">
         {Array.isArray(image) ? (

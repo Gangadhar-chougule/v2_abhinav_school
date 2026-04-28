@@ -408,6 +408,31 @@ h1, h2, h3, h4, h5, h6 {
   animation-play-state: paused;
 }
 
+/* Facilities page tuning */
+.hero-facilities {
+  --facility-heading-size: 3rem;
+}
+.hero-facilities .heading-display {
+  font-size: var(--facility-heading-size);
+  color: white;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Reveal any elements hidden by inline styles on facilities page (used for legacy content) */
+.hero-facilities ~ section .hidden, .hero-facilities ~ section [hidden] {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Facilities content typography */
+.section-container .heading-sub {
+  font-size: 1.75rem;
+}
+.section-container .body-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

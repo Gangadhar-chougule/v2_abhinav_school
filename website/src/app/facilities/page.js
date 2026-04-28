@@ -37,7 +37,8 @@ export default function Facilities() {
 
   return (
     <Layout>
-      <PageHero title={t('facilitiesTitle')} description={t('facilitiesDesc')} />
+      {/* Use green ribbon hero for facilities and apply facility-specific tuning */}
+      <PageHero title={t('facilitiesTitle')} description={t('facilitiesDesc')} image={null} className="hero-facilities" />
 
       <section className="section-spacing">
         <div className="section-container">
