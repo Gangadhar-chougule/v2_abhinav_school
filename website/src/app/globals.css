@@ -433,6 +433,28 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.75;
 }
 
+/* Admissions-specific tuning to match the provided CSS and layout */
+.hero-admissions {
+  --admissions-heading-size: 4.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.hero-admissions .heading-display {
+  font-size: var(--admissions-heading-size);
+  text-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  color: white;
+}
+.hero-admissions .section-container { max-width: 1100px; }
+
+/* Make the admissions form narrower and centered as in the screenshot */
+.section-container .surface-card-strong { max-width: 720px; margin-left: auto; margin-right: auto; }
+
+/* Reveal any hidden elements adjacent to the admissions hero */
+.hero-admissions ~ section .hidden, .hero-admissions ~ section [hidden] {
+  display: block !important;
+  visibility: visible !important;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

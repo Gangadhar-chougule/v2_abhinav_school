@@ -53,6 +53,7 @@ export default function Admissions() {
         title={t('admissionsTitle')}
         description={t('admissionsDesc')}
         image={null}
+        className="hero-admissions"
       />
 
       <section className="section-spacing">
