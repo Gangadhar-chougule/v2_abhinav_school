@@ -372,6 +372,42 @@ h1, h2, h3, h4, h5, h6 {
   100% { opacity: 0; }
 }
 
+/* New tuned hero styles: bigger headline, stronger overlay, pause-on-hover */
+.bg-hero-green {
+  background-image: linear-gradient(90deg, rgba(34,197,94,0.98), rgba(16,185,129,0.98));
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+.bg-hero-green .section-container {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bg-hero-green .heading-display {
+  font-size: 5.25rem; /* stronger headline */
+  line-height: 1.05;
+  text-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  color: white;
+}
+.bg-hero-green .body-large {
+  color: rgba(255,255,255,0.92);
+  max-width: 800px;
+}
+
+/* Darker overlay for improved contrast when using photo hero */
+.page-hero .bg-hero-overlay-strong {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.12));
+  pointer-events: none;
+}
+
+/* Pause slideshow on hover so users can read content */
+.hero-slideshow:hover .hero-slide,
+.hero-slideshow:focus-within .hero-slide {
+  animation-play-state: paused;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

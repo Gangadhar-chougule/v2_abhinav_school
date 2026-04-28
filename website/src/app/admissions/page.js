@@ -48,11 +48,11 @@ export default function Admissions() {
 
   return (
     <Layout>
-      {/* Use a single campus image for admissions hero to match desired design */}
+      {/* Use green ribbon hero variant for admissions (no background image) */}
       <PageHero
         title={t('admissionsTitle')}
         description={t('admissionsDesc')}
-        image={getImageUrl('unnamed (11).webp') || '/images/unnamed (11).webp'}
+        image={null}
       />
 
       <section className="section-spacing">
