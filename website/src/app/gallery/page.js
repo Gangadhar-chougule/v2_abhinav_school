@@ -104,6 +104,22 @@ const galleryImages = [
     category: 'sahal',
     alt: 'शौक्षणिक सहल'
   },
+  // Added images requested by the designer: fall back to cloudinary mapping when available
+  {
+    src: getImageUrl('tree-planting.jpg'),
+    category: 'sahal',
+    alt: 'Tree Planting Program (वृक्षारोपण)'
+  },
+  {
+    src: getImageUrl('educational-trip.jpg'),
+    category: 'sahal',
+    alt: 'Educational Trips (शैक्षणिक सहल)'
+  },
+  {
+    src: getImageUrl('unnamed (11).webp'),
+    category: 'aarogya',
+    alt: 'School Campus (शालेय परिसर)'
+  },
 ];
 
 export default function Gallery() {

@@ -15,16 +15,17 @@ export default function PageHero({
   const { t } = useLanguage();
   const heightClass = size === 'large' ? 'min-h-[70vh] md:min-h-[85vh]' : 'min-h-[40vh] md:min-h-[50vh]';
 
-  // If no image is provided render a full-width green banner (matches admissions screenshot)
+  // If no image is provided render a centered green banner with a constrained width so heading doesn't stretch
   if (!image) {
     return (
       <section className={`relative flex items-center justify-center overflow-hidden bg-hero-green ${heightClass}`}>
         <div className="absolute inset-0 opacity-90 bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-400" />
         <div className="relative z-10 section-container text-center w-full">
-          <ScrollReveal className="max-w-3xl mx-auto" delay={100}>
+          {/* Limit hero content width to make the green bar feel narrower on very large screens */}
+          <ScrollReveal className="max-w-[1000px] mx-auto hero-animate" delay={120}>
             <h1 className="heading-display text-white drop-shadow-md">{title}</h1>
             {description ? (
-              <p className="body-large mt-4 max-w-2xl text-white/90">{description}</p>
+              <p className="body-large mt-4 max-w-2xl text-white/90 mx-auto">{description}</p>
             ) : null}
           </ScrollReveal>
         </div>
