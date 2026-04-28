@@ -28,8 +28,8 @@ export default function Home() {
       <PageHero
         title={t('homeTitle')}
         description={t('homeDesc')}
-        // Use the bundled public image to guarantee the exact photo from screenshots
-        image={'/images/school-building.jpg'}
+        // Resolve image via helper so it can come from Cloudinary mapping or the bundled public images
+        image={getImageUrl('school-building.jpg') || '/images/school-building.jpg'}
         imageAlt="School campus"
         size="large"
       />
