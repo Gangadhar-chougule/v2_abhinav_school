@@ -21,10 +21,6 @@ const StaffSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  imagePublicId: {
-    type: String,
-    trim: true,
-  },
   order: {
     type: Number,
     default: 0,

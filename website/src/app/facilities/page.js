@@ -5,6 +5,8 @@ import { Building2, Droplets, Trees } from 'lucide-react';
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import { SectionIntroReveal, StaggerReveal } from '@/components/MotionReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getImageUrl } from '@/lib/imageUrls';
 
@@ -42,11 +44,21 @@ export default function Facilities() {
 
       <section className="section-spacing">
         <div className="section-container">
+          <SectionIntroReveal delay={80}>
+            <SectionHeader
+              kicker={t('facilitiesTitle')}
+              title={t('facilitiesTitle')}
+              subtitle={t('facilitiesDesc')}
+              align="center"
+              className="mb-8"
+            />
+          </SectionIntroReveal>
+
           <div className="space-y-8">
             {facilities.map((facility, index) => {
               const Icon = facility.icon;
               return (
-                <ScrollReveal key={facility.titleEn} delay={90 + index * 70}>
+                <StaggerReveal key={facility.titleEn} index={index} baseDelay={90} step={70}>
                   <article className="surface-card-strong overflow-hidden">
                     <div className={`grid items-center gap-0 lg:grid-cols-2 ${index % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
                       <div className="relative min-h-[280px] md:min-h-[360px]">
@@ -63,18 +75,18 @@ export default function Facilities() {
                           <Icon size={24} />
                         </span>
                         <h2 className="heading-sub mb-2">{t(facility.titleKey)}</h2>
-                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80">{facility.titleEn}</p>
+                        <p className="meta-text text-primary/90 uppercase">{facility.titleEn}</p>
                         <p className="body-text mt-5">{t(facility.descKey)}</p>
                       </div>
                     </div>
                   </article>
-                </ScrollReveal>
+                </StaggerReveal>
               );
             })}
           </div>
 
           <ScrollReveal className="surface-card-strong mt-10 p-8 text-center md:p-10" delay={180}>
-            <h3 className="heading-sub mb-6">{t('additionalFacilities')}</h3>
+            <SectionHeader title={t('additionalFacilities')} align="center" titleTag="h3" className="mb-6" />
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
               {[
                 t('healthCheckups'),

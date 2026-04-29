@@ -4,6 +4,7 @@ import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const contacts = [
@@ -25,13 +26,17 @@ export default function Contact() {
       <section className="section-spacing">
         <div className="section-container max-w-3xl mx-auto">
           <ScrollReveal>
-            <h1 className="heading-display text-center mb-4">{t('contactTitle')}</h1>
-            <p className="body-large text-center max-w-2xl mx-auto mb-16">{t('contactDesc')}</p>
+            <SectionHeader
+              title={t('contactTitle')}
+              subtitle={t('contactDesc')}
+              align="center"
+              titleTag="h1"
+              className="mb-16"
+            />
           </ScrollReveal>
 
-          <ScrollReveal className="border border-border rounded-md p-8 mb-12" delay={100}>
-            <span className="section-kicker">{t('adpsContact')}</span>
-            <h2 className="heading-sub mb-6">{t('adpsContact')}</h2>
+          <ScrollReveal className="surface-card-strong hover-lift p-8 mb-12" delay={100}>
+            <SectionHeader kicker={t('adpsContact')} title={t('adpsContact')} titleTag="h2" className="mb-6" />
             <div className="flex flex-col gap-4 mb-6">
               {adpsContacts.map((contact) => (
                 <a
@@ -68,7 +73,7 @@ export default function Contact() {
           <div className="grid sm:grid-cols-2 gap-6 mb-12">
             {contacts.map((contact, index) => (
               <ScrollReveal key={`${contact.phone}-${index}`} delay={index * 100}>
-                <div className="contact-card border border-border rounded-md p-6 hover-lift">
+                <div className="contact-card card-touch border border-border rounded-md p-6 hover-lift">
                   <h3 className="font-heading text-xl font-semibold text-foreground mb-1">{contact.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{contact.role}</p>
                   <div className="flex flex-col gap-2">
@@ -92,7 +97,7 @@ export default function Contact() {
           </div>
 
           <ScrollReveal delay={200}>
-            <div className="bg-secondary/10 rounded-md p-8 text-center">
+            <div className="card-touch hover-lift bg-secondary/10 rounded-md p-8 text-center">
               <Phone className="mx-auto mb-4 text-primary pulse-icon" size={32} />
               <h3 className="heading-sub mb-2">{t('visitOrCall')}</h3>
               <p className="body-text">{t('contactInfo')}</p>

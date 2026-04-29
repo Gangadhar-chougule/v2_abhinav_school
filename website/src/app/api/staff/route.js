@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Staff from "@/models/Staff";
+import { deleteLocalUpload, isManagedUploadPath } from "@/lib/localUploads";
 
 export async function GET() {
   try {
@@ -16,14 +17,14 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { name, role, phone, image, imagePublicId, order } = body;
+    const { name, role, phone, image, order } = body;
 
     if (!name || !role) {
       return NextResponse.json({ error: "Name and role are required" }, { status: 400 });
     }
 
     await dbConnect();
-    const staff = await Staff.create({ name, role, phone, image, imagePublicId, order: order || 0 });
+    const staff = await Staff.create({ name, role, phone, image, order: order || 0 });
 
     return NextResponse.json({ success: true, data: staff }, { status: 201 });
   } catch (error) {
@@ -35,21 +36,30 @@ export async function POST(request) {
 export async function PUT(request) {
   try {
     const body = await request.json();
-    const { id, name, role, phone, image, imagePublicId, order, isActive } = body;
+    const { id, name, role, phone, image, order, isActive } = body;
 
     if (!id) {
       return NextResponse.json({ error: "Staff ID is required" }, { status: 400 });
     }
 
     await dbConnect();
+    const existing = await Staff.findById(id).lean();
+    if (!existing) {
+      return NextResponse.json({ error: "Staff member not found" }, { status: 404 });
+    }
+
     const staff = await Staff.findByIdAndUpdate(
       id,
-      { name, role, phone, image, imagePublicId, order, isActive },
+      { name, role, phone, image, order, isActive },
       { new: true }
     );
 
     if (!staff) {
       return NextResponse.json({ error: "Staff member not found" }, { status: 404 });
+    }
+
+    if (image && existing.image && image !== existing.image && isManagedUploadPath(existing.image)) {
+      await deleteLocalUpload(existing.image);
     }
 
     return NextResponse.json({ success: true, data: staff }, { status: 200 });
@@ -73,6 +83,10 @@ export async function DELETE(request) {
 
     if (!staff) {
       return NextResponse.json({ error: "Staff member not found" }, { status: 404 });
+    }
+
+    if (staff?.image && isManagedUploadPath(staff.image)) {
+      await deleteLocalUpload(staff.image);
     }
 
     return NextResponse.json({ success: true, message: "Staff member deleted" }, { status: 200 });

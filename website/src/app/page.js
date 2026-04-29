@@ -15,6 +15,8 @@ import {
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import { SectionIntroReveal, StaggerReveal } from '@/components/MotionReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getImageUrl } from '@/lib/imageUrls';
 
@@ -36,7 +38,7 @@ export default function Home() {
       />
 
       {/* Stats / Features Strip */}
-      <section className="relative z-20 -mt-10 sm:-mt-14">
+      <section className="relative z-20 -mt-8 sm:-mt-12 lg:-mt-[4cm]">
         <div className="section-container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
             {[
@@ -45,16 +47,18 @@ export default function Home() {
               { label: t('guidanceCounseling'), icon: ShieldCheck },
               { label: t('vocationalTraining'), icon: Sparkles },
             ].map((item, index) => (
-              <ScrollReveal 
-                key={index} 
-                delay={index * 100} 
-                className="bg-white p-5 md:p-6 rounded-xl shadow-md flex flex-col items-center text-center gap-3 hover:-translate-y-1 transition-transform"
+              <StaggerReveal
+                key={index}
+                index={index}
+                baseDelay={0}
+                step={90}
+                className="home-feature-tile bg-white p-5 md:p-6 rounded-xl shadow-md flex flex-col items-center text-center gap-3"
               >
                 <div className="h-11 w-11 rounded-lg bg-primary text-white flex items-center justify-center shadow-md">
                   <item.icon size={22} />
                 </div>
                 <span className="text-xs md:text-sm font-semibold text-slate-900 leading-tight">{item.label}</span>
-              </ScrollReveal>
+              </StaggerReveal>
             ))}
           </div>
         </div>
@@ -81,15 +85,14 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="text-lg font-bold text-slate-900">ISO</p>
-                    <p className="text-[10px] text-slate-500 uppercase tracking-wider">Certified School</p>
+                    <p className="meta-text uppercase">Certified School</p>
                   </div>
                 </div>
               </div>
             </ScrollReveal>
             
             <ScrollReveal delay={200}>
-              <span className="section-kicker">{t('aboutUs')}</span>
-              <h2 className="heading-section mb-6 text-slate-900">{t('aboutSection')}</h2>
+              <SectionHeader kicker={t('aboutUs')} title={t('aboutSection')} className="mb-6" />
               <p className="body-large mb-6">{t('aboutDesc1')}</p>
               <p className="body-text mb-8">{t('aboutDesc2')}</p>
               <div className="flex flex-wrap gap-4">
@@ -108,10 +111,10 @@ export default function Home() {
       {/* Services Grid */}
       <section className="section-spacing bg-slate-50">
         <div className="section-container">
-          <ScrollReveal className="text-center mb-12" delay={100}>
+          <SectionIntroReveal className="text-center mb-12" delay={100}>
             <span className="section-kicker">{t('ourServices')}</span>
             <h2 className="heading-section text-slate-900">{t('ourServices')}</h2>
-          </ScrollReveal>
+          </SectionIntroReveal>
 
           <div className="grid gap-6 md:grid-cols-2">
             {[
@@ -122,16 +125,16 @@ export default function Home() {
             ].map((item, index) => {
               const Icon = serviceIcons[index];
               return (
-                <ScrollReveal key={index} delay={150 + index * 100}>
-                  <div className="surface-card p-8 h-full group hover:shadow-md transition-shadow">
+                <StaggerReveal key={index} index={index} baseDelay={150} step={90}>
+                  <div className="surface-card hover-lift p-8 h-full group">
                     <div className="h-12 w-12 rounded-xl bg-primary text-white flex items-center justify-center mb-6 shadow-md group-hover:scale-105 transition-transform">
                       <Icon size={24} />
                     </div>
                     <h3 className="heading-sub mb-2 text-slate-900">{item.title}</h3>
-                    <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-3">{item.titleEn}</p>
+                    <p className="meta-text text-primary uppercase mb-3">{item.titleEn}</p>
                     <p className="body-text">{item.desc}</p>
                   </div>
-                </ScrollReveal>
+                </StaggerReveal>
               );
             })}
           </div>
@@ -142,10 +145,9 @@ export default function Home() {
       <section className="section-spacing">
         <div className="section-container">
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-10 md:mb-12">
-            <ScrollReveal delay={100}>
-              <span className="section-kicker">{t('schoolActivities')}</span>
-              <h2 className="heading-section text-slate-900">{t('schoolActivities')}</h2>
-            </ScrollReveal>
+            <SectionIntroReveal delay={100}>
+              <SectionHeader kicker={t('schoolActivities')} title={t('schoolActivities')} />
+            </SectionIntroReveal>
             <ScrollReveal delay={200}>
               <Link href="/events" className="text-primary font-semibold inline-flex items-center gap-2 hover:gap-3 transition-all text-sm">
                 {t('viewAllEvents')} <ArrowRight size={16} />
@@ -168,8 +170,8 @@ export default function Home() {
                 icon: Users,
               },
             ].map((item, index) => (
-              <ScrollReveal key={index} delay={150 + index * 100}>
-                <article className="surface-card overflow-hidden h-full group">
+              <StaggerReveal key={index} index={index} baseDelay={150} step={90}>
+                <article className="surface-card hover-lift overflow-hidden h-full group">
                   <div className="relative h-64 md:h-72 overflow-hidden">
                     <Image
                       src={item.image}
@@ -179,7 +181,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="p-6 md:p-7">
-                    <div className="flex items-center gap-2 text-primary text-xs font-semibold uppercase tracking-wider mb-3">
+                    <div className="meta-text flex items-center gap-2 text-primary uppercase mb-3">
                       <item.icon size={14} />
                       {t('activity')}
                     </div>
@@ -187,7 +189,7 @@ export default function Home() {
                     <p className="body-text line-clamp-3">{item.desc}</p>
                   </div>
                 </article>
-              </ScrollReveal>
+              </StaggerReveal>
             ))}
           </div>
         </div>

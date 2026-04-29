@@ -25,10 +25,6 @@ const EventSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  imagePublicId: {
-    type: String,
-    trim: true,
-  },
   isActive: {
     type: Boolean,
     default: true,

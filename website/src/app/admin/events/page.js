@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Pencil, Trash2, Upload, X, Calendar, ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
-import { uploadToCloudinary } from "@/lib/cloudinary";
+import EmptyState from "@/components/EmptyState";
 
 export default function EventsManagementPage() {
   const [events, setEvents] = useState([]);
@@ -23,7 +24,6 @@ export default function EventsManagementPage() {
     date: "",
     location: "",
     image: "",
-    imagePublicId: "",
   });
 
   useEffect(() => {
@@ -54,9 +54,15 @@ export default function EventsManagementPage() {
 
     setUploading(true);
     try {
-      const result = await uploadToCloudinary(file);
-      if (result.success) {
-        setForm({ ...form, image: result.url, imagePublicId: result.publicId });
+      const payload = new FormData();
+      payload.append("file", file);
+      const response = await fetch("/api/upload?section=events", {
+        method: "POST",
+        body: payload,
+      });
+      const result = await response.json();
+      if (response.ok && result.success) {
+        setForm({ ...form, image: result.imagePath });
         toast.success("Image uploaded successfully");
       } else {
         toast.error(result.error || "Upload failed");
@@ -110,7 +116,6 @@ export default function EventsManagementPage() {
       date: event.date ? new Date(event.date).toISOString().split("T")[0] : "",
       location: event.location || "",
       image: event.image || "",
-      imagePublicId: event.imagePublicId || "",
     });
     setShowModal(true);
   };
@@ -132,7 +137,7 @@ export default function EventsManagementPage() {
   };
 
   const resetForm = () => {
-    setForm({ title: "", description: "", date: "", location: "", image: "", imagePublicId: "" });
+    setForm({ title: "", description: "", date: "", location: "", image: "" });
     setEditingEvent(null);
   };
 
@@ -174,9 +179,12 @@ export default function EventsManagementPage() {
           {loading ? (
             <div className="p-10 text-center text-muted-foreground">Loading...</div>
           ) : events.length === 0 ? (
-            <div className="p-10 text-center text-muted-foreground">
-              <Calendar size={48} className="mx-auto mb-4 opacity-50" />
-              <p>No events found. Add your first event!</p>
+            <div className="p-10">
+              <EmptyState
+                icon={Calendar}
+                title="No events found"
+                description="Add your first event to start showing activities."
+              />
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -197,7 +205,9 @@ export default function EventsManagementPage() {
                       <td className="px-4 py-4 text-sm font-medium text-muted-foreground">{index + 1}</td>
                       <td className="px-4 py-4">
                         {event.image ? (
-                          <img src={event.image} alt={event.title} className="h-12 w-12 rounded-lg object-cover" />
+                          <div className="relative h-12 w-12 overflow-hidden rounded-lg">
+                            <Image src={event.image} alt={event.title} fill className="object-cover" sizes="48px" />
+                          </div>
                         ) : (
                           <div className="h-12 w-12 rounded-lg bg-secondary/10 flex items-center justify-center">
                             <ImageIcon size={20} className="text-secondary" />
@@ -244,7 +254,7 @@ export default function EventsManagementPage() {
                 <div className="flex items-center gap-4">
                   <div className="relative h-20 w-32 rounded-lg overflow-hidden bg-secondary/10 flex items-center justify-center">
                     {form.image ? (
-                      <img src={form.image} alt="Preview" className="h-full w-full object-cover" />
+                      <Image src={form.image} alt="Preview" fill className="object-cover" sizes="128px" />
                     ) : (
                       <ImageIcon size={24} className="text-secondary" />
                     )}

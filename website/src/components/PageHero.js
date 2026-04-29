@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { Pause, Play } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -15,6 +17,19 @@ export default function PageHero({
 }) {
   const { t } = useLanguage();
   const heightClass = size === 'large' ? 'min-h-[70vh] md:min-h-[85vh]' : 'min-h-[40vh] md:min-h-[50vh]';
+  const isSlideshow = Array.isArray(image) && image.length > 1;
+  const slides = useMemo(() => (Array.isArray(image) ? image : []), [image]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const activeSlide = slides.length > 0 ? currentSlide % slides.length : 0;
+
+  useEffect(() => {
+    if (!isSlideshow || isPaused) return undefined;
+    const interval = window.setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => window.clearInterval(interval);
+  }, [isPaused, isSlideshow, slides.length]);
 
   // If no image is provided render a centered green banner with a constrained width so heading doesn't stretch
   if (!image) {
@@ -39,7 +54,11 @@ export default function PageHero({
       {/* Background Image or slideshow (supports string or array of image urls) */}
       <div className="absolute inset-0 z-0">
         {Array.isArray(image) ? (
-          <div className="hero-slideshow absolute inset-0">
+          <div
+            className="hero-slideshow absolute inset-0"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             {image.map((imgSrc, idx) => (
               <Image
                 key={idx}
@@ -47,9 +66,8 @@ export default function PageHero({
                 alt={imageAlt || `hero-${idx}`}
                 fill
                 priority={idx === 0}
-                className={`object-cover object-center hero-slide`}
+                className={`object-cover object-center transition-opacity duration-700 ${idx === activeSlide ? 'opacity-100' : 'opacity-0'}`}
                 sizes="100vw"
-                style={{ animationDelay: `${idx * 6}s` }}
               />
             ))}
           </div>
@@ -64,14 +82,17 @@ export default function PageHero({
           />
         )}
 
-        {/* Softer overlay for lighter UI while keeping text readable */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent" />
+        {/* Layered overlay keeps heading readable across bright/dark slides */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/35 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/15" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 section-container w-full">
-        <ScrollReveal className="max-w-3xl" delay={100}>
+        <ScrollReveal
+          className="max-w-3xl rounded-3xl border border-white/20 bg-black/35 p-6 shadow-2xl backdrop-blur-[3px] sm:p-8 md:p-10"
+          delay={100}
+        >
           <h1 className="heading-display text-white drop-shadow-md">{title}</h1>
           {description ? (
             <p className="body-large mt-6 max-w-2xl text-white/90">{description}</p>
@@ -87,6 +108,30 @@ export default function PageHero({
               {t('contactUs')}
             </Link>
           </div>
+
+          {isSlideshow ? (
+            <div className="mt-6 flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsPaused((value) => !value)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-black/30 text-white hover:bg-black/40"
+                aria-label={isPaused ? 'Play slideshow' : 'Pause slideshow'}
+              >
+                {isPaused ? <Play size={14} /> : <Pause size={14} />}
+              </button>
+              <div className="flex items-center gap-2">
+                {slides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`h-2.5 rounded-full transition-all ${idx === activeSlide ? 'w-7 bg-white' : 'w-2.5 bg-white/45 hover:bg-white/70'}`}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : null}
         </ScrollReveal>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { CheckCircle2, Compass, Target } from 'lucide-react';
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getImageUrl } from '@/lib/imageUrls';
 
@@ -21,8 +22,12 @@ export default function VisionMission() {
       <section className="section-spacing">
         <div className="section-container max-w-6xl">
           <ScrollReveal className="section-panel text-center" delay={90}>
-            <span className="section-kicker">{t('visionMission')}</span>
-            <h2 className="heading-section mb-4">&ldquo;{t('visionQuote')}&rdquo;</h2>
+            <SectionHeader
+              kicker={t('visionMission')}
+              title={`“${t('visionQuote')}”`}
+              align="center"
+              className="mb-4"
+            />
             <p className="body-large">&ldquo;{t('visionQuoteEn')}&rdquo;</p>
           </ScrollReveal>
 

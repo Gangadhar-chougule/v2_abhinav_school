@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Eye, Check, X, Trash2, FileText, Clock, CheckCircle, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
+import EmptyState from "@/components/EmptyState";
 
 const statusConfig = {
   pending: { label: "Pending", icon: Clock, color: "text-amber-600 bg-amber-50" },
@@ -139,7 +140,13 @@ export default function AdmissionsPage() {
           {loading ? (
             <div className="p-10 text-center text-muted-foreground">Loading...</div>
           ) : enquiries.length === 0 ? (
-            <div className="p-10 text-center text-muted-foreground">No admission enquiries found</div>
+            <div className="p-10">
+              <EmptyState
+                icon={FileText}
+                title="No admission enquiries found"
+                description="New enquiry submissions will appear here."
+              />
+            </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full border-collapse">

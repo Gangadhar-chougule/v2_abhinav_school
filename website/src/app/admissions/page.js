@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getImageUrl } from '@/lib/imageUrls';
 
@@ -49,6 +50,7 @@ export default function Admissions() {
   return (
     <Layout>
       {/* Use green ribbon hero variant for admissions (no background image) */}
+      {/* Use green ribbon hero variant for admissions (no background image) */}
       <PageHero
         title={t('admissionsTitle')}
         description={t('admissionsDesc')}
@@ -59,10 +61,13 @@ export default function Admissions() {
       <section className="section-spacing">
         <div className="section-container max-w-3xl">
           <ScrollReveal className="surface-card-strong p-8 md:p-10" delay={100}>
-            <div className="text-center">
-              <span className="section-kicker">{t('requestInfo')}</span>
-              <h2 className="heading-sub mb-8">{t('requestInfo')}</h2>
-            </div>
+            <SectionHeader
+              kicker={t('requestInfo')}
+              title={t('requestInfo')}
+              align="center"
+              titleTag="h2"
+              className="mb-8"
+            />
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="space-y-2">

@@ -6,6 +6,8 @@ import { X } from 'lucide-react';
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import { SectionIntroReveal, StaggerReveal } from '@/components/MotionReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getImageUrl } from '@/lib/imageUrls';
 
@@ -104,7 +106,7 @@ const galleryImages = [
     category: 'sahal',
     alt: 'शौक्षणिक सहल'
   },
-  // Added images requested by the designer: fall back to cloudinary mapping when available
+  // Added featured campus/activity images from local public images folder
   {
     src: getImageUrl('tree-planting.jpg'),
     category: 'sahal',
@@ -137,6 +139,16 @@ export default function Gallery() {
 
       <section className="section-spacing">
         <div className="section-container">
+          <SectionIntroReveal delay={80}>
+            <SectionHeader
+              kicker={t('galleryTitle')}
+              title={t('galleryTitle')}
+              subtitle={t('galleryDesc')}
+              align="center"
+              className="mb-8"
+            />
+          </SectionIntroReveal>
+
           <div className="mb-8 flex flex-wrap justify-center gap-3">
             {galleryCategories.map((cat) => (
               <button
@@ -156,10 +168,10 @@ export default function Gallery() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredImages.map((img, index) => (
-              <ScrollReveal key={img.src} delay={70 + index * 30}>
+              <StaggerReveal key={img.src} index={index} baseDelay={70} step={30}>
                 <button
                   type="button"
-                  className="group relative aspect-square w-full overflow-hidden rounded border border-border bg-white text-left"
+                  className="gallery-tile-touch group relative aspect-square w-full overflow-hidden rounded border border-border bg-white text-left"
                   onClick={() => setSelectedImage(img)}
                 >
                   <Image
@@ -174,7 +186,7 @@ export default function Gallery() {
                     <p className="text-sm font-medium text-white">{img.alt}</p>
                   </div>
                 </button>
-              </ScrollReveal>
+              </StaggerReveal>
             ))}
           </div>
 

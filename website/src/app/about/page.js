@@ -4,6 +4,7 @@ import { CheckCircle2 } from 'lucide-react';
 import Layout from '@/components/Layout';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
+import SectionHeader from '@/components/SectionHeader';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getImageUrl } from '@/lib/imageUrls';
 
@@ -22,8 +23,7 @@ export default function About() {
         <div className="section-container max-w-6xl">
           <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
             <ScrollReveal className="section-panel" delay={90}>
-              <span className="section-kicker">{t('ourStory')}</span>
-              <h2 className="heading-section mb-6">{t('ourStory')}</h2>
+              <SectionHeader kicker={t('ourStory')} title={t('ourStory')} className="mb-6" />
               <div className="space-y-5">
                 <p className="body-large">{t('storyDesc1')}</p>
                 <p className="body-text">{t('storySanskrit')}</p>
@@ -33,8 +33,7 @@ export default function About() {
             </ScrollReveal>
 
             <ScrollReveal className="surface-card-strong p-8 md:p-10" delay={140}>
-              <span className="section-kicker">{t('achievements')}</span>
-              <h3 className="heading-sub mb-5">{t('achievements')}</h3>
+              <SectionHeader kicker={t('achievements')} title={t('achievements')} titleTag="h3" className="mb-5" />
               <p className="body-text">{t('achievementDesc1')}</p>
               <p className="body-text mt-4">{t('achievementDesc2')}</p>
             </ScrollReveal>

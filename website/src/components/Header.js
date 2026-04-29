@@ -28,6 +28,7 @@ export default function Header() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const pathname = usePathname();
   const { t } = useLanguage();
 
@@ -48,6 +49,25 @@ export default function Header() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        setAboutOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const isAboutActive = pathname === '/about' || pathname === '/vision-mission';
 
@@ -82,17 +102,17 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => setAboutOpen((value) => !value)}
-                    className={`inline-flex items-center gap-1 rounded px-3 py-2 text-sm font-medium transition-colors ${
+                    className={`inline-flex items-center gap-1 rounded border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
                       isAboutActive
-                        ? 'text-primary'
-                        : 'text-slate-600 hover:text-slate-900'
+                        ? 'border-primary text-primary'
+                        : 'border-transparent text-slate-600 hover:text-slate-900'
                     }`}
                   >
                     {t(link.labelKey)}
                     <ChevronDown size={14} className={`transition-transform duration-200 ${aboutOpen ? 'rotate-180' : ''}`} />
                   </button>
                   <div
-                    className={`absolute left-0 top-full mt-1 w-52 rounded border border-slate-200 bg-white p-2 transition-all duration-200 ${
+                    className={`absolute left-0 top-full mt-1 w-52 rounded border border-slate-200 bg-white p-2 shadow-lg shadow-slate-900/10 transition-all duration-200 ${
                       aboutOpen ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
                     }`}
                   >
@@ -116,10 +136,10 @@ export default function Header() {
                 <Link
                   key={link.to}
                   href={link.to}
-                  className={`rounded px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`rounded border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
                     pathname === link.to
-                      ? 'text-primary'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'border-primary text-primary'
+                      : 'border-transparent text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   {t(link.labelKey)}
@@ -140,7 +160,9 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setIsOpen((value) => !value)}
-              aria-label="Toggle menu"
+              aria-controls="mobile-site-nav"
+              aria-expanded={isOpen}
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               className="inline-flex h-10 w-10 items-center justify-center rounded border border-slate-200 bg-white text-slate-900"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -149,26 +171,28 @@ export default function Header() {
         </div>
 
         <div
+          ref={mobileMenuRef}
+          id="mobile-site-nav"
           className={`overflow-hidden transition-all duration-300 lg:hidden ${
-            isOpen ? 'mt-4 opacity-100' : 'max-h-0 opacity-0'
+            isOpen ? 'mt-4 max-h-[70vh] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <nav className="flex flex-col gap-1 rounded border border-slate-200 bg-white p-2">
+          <nav role="navigation" className="flex flex-col gap-1.5 rounded border border-slate-200 bg-white p-2.5 shadow-lg shadow-slate-900/5">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 href={link.to}
                 onClick={() => setIsOpen(false)}
-                className={`rounded px-4 py-3 text-sm font-medium transition-colors ${
+                className={`flex min-h-12 items-center rounded border-l-4 px-4 py-3 text-sm font-medium transition-colors ${
                   pathname === link.to || (link.to === '/about' && isAboutActive)
-                    ? 'bg-slate-50 text-primary'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    ? 'border-primary bg-slate-50 text-primary'
+                    : 'border-transparent text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                 }`}
               >
                 {t(link.labelKey)}
               </Link>
             ))}
-            <Link href="/admissions" onClick={() => setIsOpen(false)} className="button-primary mt-2 w-full py-3">
+            <Link href="/admissions" onClick={() => setIsOpen(false)} className="button-primary mt-2.5 w-full py-3">
               {t('applyNow')}
             </Link>
           </nav>
